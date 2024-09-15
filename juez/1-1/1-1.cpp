@@ -10,8 +10,19 @@
 
 // función que resuelve el problema
 bool resolver(std::vector<int> datos) {
-    
-    return false;
+    int n = datos.size();
+    int i = 0, j = 0, k = 0;
+
+    while (i < n - 1) // porque accedemos al siguiente dentro del bucle 
+    {
+	    if (datos[i] < datos[i + 1])
+			j++;
+        else if (datos[i] > datos[i + 1])
+            k++;
+    	i++;
+    }
+
+    return k == i || j == i;
 }
 
 // Resuelve un caso de prueba, leyendo de la entrada la
@@ -19,7 +30,7 @@ bool resolver(std::vector<int> datos) {
 bool resuelveCaso() {
     int n = 0;
     std::cin >> n;
-    if (std::cin)
+    if (n < 1)
         return false;
 
     std::vector<int> datos(n);
