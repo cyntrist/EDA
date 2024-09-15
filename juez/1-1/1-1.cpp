@@ -9,6 +9,7 @@
 
 
 // función que resuelve el problema
+// O(n) ya que se recorre el vector una vez, donde n es el tamaño del vector
 bool resolver(std::vector<int> datos) {
     int n = datos.size();
     int i = 0, j = 0, k = 0;
