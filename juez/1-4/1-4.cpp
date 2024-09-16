@@ -10,9 +10,9 @@
 
 // función que resuelve el problema
 void resolver(std::vector<int>& datos) {
-    for (unsigned int i = 0; i < datos.size(); i++)
+    for (int dato : datos)
     {
-	    if (datos[i] % 2 == 1) // si es impar
+	    if (dato % 2 == 1) // si es impar
 	    {
 		    
 	    }
@@ -22,7 +22,6 @@ void resolver(std::vector<int>& datos) {
 // Resuelve un caso de prueba, leyendo de la entrada la
 // configuración, y escribiendo la respuesta
 void resuelveCaso() {
-    // leer los datos de la entrada
     int n;
     std::cin >> n;
 
@@ -32,7 +31,9 @@ void resuelveCaso() {
 
     resolver(datos);
     
-    
+	for (const int dato : datos)
+        std::cout << dato << " ";
+    std::cout << std::endl;
 }
 
 int main() {
