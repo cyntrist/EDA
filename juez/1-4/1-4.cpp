@@ -5,11 +5,18 @@
 #include <iostream>
 #include <iomanip>
 #include <fstream>
+#include <vector>
 
 
 // función que resuelve el problema
-TipoSolucion resolver(TipoDatos datos) {
-    
+void resolver(std::vector<int>& datos) {
+    for (unsigned int i = 0; i < datos.size(); i++)
+    {
+	    if (datos[i] % 2 == 1) // si es impar
+	    {
+		    
+	    }
+    }
     
 }
 
@@ -20,13 +27,11 @@ void resuelveCaso() {
     int n;
     std::cin >> n;
 
-    for (int i = 0; i < n; i++) 
+    std::vector<int> datos(n);
+    for (int i = 0; i < n; i++)
+        std::cin >> datos[i];
 
-
-
-
-    TipoSolucion sol = resolver(datos);
-    // escribir sol
+    resolver(datos);
     
     
 }
