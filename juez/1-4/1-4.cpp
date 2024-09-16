@@ -17,7 +17,6 @@ void resolver(std::vector<int>& datos) {
 		    
 	    }
     }
-    
 }
 
 // Resuelve un caso de prueba, leyendo de la entrada la
