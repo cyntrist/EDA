@@ -10,28 +10,18 @@
 
 // función que resuelve el problema
 void resolver(std::vector<int>& datos) {
-    std::vector<int> indices;
-    int n = datos.size();
+    int n = 0;
 
     for (int i = 0; i < datos.size(); i++)
     {
-	    if (datos[i] % 2 == 1) // si es impar
+	    if (datos[i] % 2 == 0) // si es impar
 	    {
-		    indices.push_back(i);
-            n--;
+            datos[n] = datos[i]; 
+            n++;
 	    }
-        {
-            // si tenemos índice de n impar, reordena el vector 
-            if (!indices.empty())
-            {
-	            datos[indices[0]] = datos[i];
-                indices.pop_back();
-                indices.push_back(i);
-            }
-        }
     }
 
-    datos.resize(n);
+	datos.resize(n);
 }
 
 // Resuelve un caso de prueba, leyendo de la entrada la
