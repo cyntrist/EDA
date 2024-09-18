@@ -1,5 +1,6 @@
-// Nombre del alumno ..... Cynthia Tristán Álvarez  
-// Usuario del Juez ...... VJ62
+// Nombre del alumno ..... Cynthia Tristán
+// Usuario del Juez ...... EDA-GDV73 
+
 #include <iostream>
 #include <fstream>
 //#include <vector>
