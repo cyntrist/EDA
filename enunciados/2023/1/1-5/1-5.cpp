@@ -16,7 +16,7 @@ vector<long long int> resolver(vector<long long int> &valores) {
 	    if (valores[i] % 2 == 1)
             valores[i] = 0;
 
-    valores.erase( std::remove( valores.begin(), valores.end(), 0 ), valores.end() ) ;
+    valores.erase( std::remove( valores.begin(), valores.end(), 0), valores.end() ) ;
 
     return valores;
 }
