@@ -8,27 +8,26 @@
 #include <vector>
 
 
-// O(n)
-// función que resuelve el problema
-bool resolver(std::vector<int> n, int d, int ini, int fin) {
+// O(log n) 
+bool resolver(std::vector<int>& n, int d, int ini, int fin) {
 	const int cant = fin - ini;
 	if (cant == 1) // unitario
 		return true; // por definicion
 	if (cant == 2) // doble
 		return abs(n[ini + 1] - n[ini]) >= d;
 
+	const int diff = abs(n[fin - 1] - n[ini]);
+    if (diff < d)
+        return false;
+
     // por enunciado, ambas mitades y el vector entero han de cumplir la condicion
 	const int mitad = (ini + fin) / 2; // indice medio
-
 	const bool izq = resolver(n, d, ini, mitad);
 	const bool der = resolver(n, d, mitad, fin);
-	const int diff = abs(n[fin - 1] - n[ini]);
 
 	return izq && der && diff >= d;
 }
 
-// Resuelve un caso de prueba, leyendo de la entrada la
-// configuración, y escribiendo la respuesta
 bool resuelveCaso() {
     int n = 0, d = 0;
     std::cin >> n >> d;

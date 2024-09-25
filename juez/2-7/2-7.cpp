@@ -1,19 +1,59 @@
-// 2-7.cpp : Este archivo contiene la función "main". La ejecución del programa comienza y termina ahí.
-//
+// Nombre del alumno ..... Cynthia Tristán
+// Usuario del Juez ...... EDA-GDV73 
+
 
 #include <iostream>
+#include <iomanip>
+#include <fstream>
+#include <vector>
+using namespace std;
 
-int main()
-{
-    std::cout << "Hello World!\n";
+// O(log n) - Divide y vencerás
+// función que resuelve el problema
+int minimo(const vector<int>& sec, int ini, int fin) {
+    const int diff = fin - ini;
+
+    if (diff == 1)
+		return sec[ini];
+
+    const int mit = (ini + fin) / 2;
+
+    int izq = minimo(sec, ini, mit);
+    int der = minimo(sec, mit, fin);
+
+    return izq < der ? izq : der;
 }
 
-// Ejecutar programa: Ctrl + F5 o menú Depurar > Iniciar sin depurar
-// Depurar programa: F5 o menú Depurar > Iniciar depuración
+// Resuelve un caso de prueba, leyendo de la entrada la
+// configuración, y escribiendo la respuesta
+bool resuelveCaso() {
+    // leer los datos de la entrada
+    int n;
+    cin >> n;
+    if (!cin) return false;
+    vector<int> sec(n);
+    for (int& e : sec) cin >> e;
+    cout << minimo(sec,0,n) << endl;
+    return true;
+}
 
-// Sugerencias para primeros pasos: 1. Use la ventana del Explorador de soluciones para agregar y administrar archivos
-//   2. Use la ventana de Team Explorer para conectar con el control de código fuente
-//   3. Use la ventana de salida para ver la salida de compilación y otros mensajes
-//   4. Use la ventana Lista de errores para ver los errores
-//   5. Vaya a Proyecto > Agregar nuevo elemento para crear nuevos archivos de código, o a Proyecto > Agregar elemento existente para agregar archivos de código existentes al proyecto
-//   6. En el futuro, para volver a abrir este proyecto, vaya a Archivo > Abrir > Proyecto y seleccione el archivo .sln
+int main() {
+    // Para la entrada por fichero.
+    // Comentar para acepta el reto
+#ifndef DOMJUDGE
+    std::ifstream in("datos.txt");
+    auto cinbuf = std::cin.rdbuf(in.rdbuf()); //save old buf and redirect std::cin to casos.txt
+#endif
+
+    while (resuelveCaso())
+        ;
+
+
+    // Para restablecer entrada. Comentar para acepta el reto
+#ifndef DOMJUDGE // para dejar todo como estaba al principio
+    std::cin.rdbuf(cinbuf);
+    //system("PAUSE");
+#endif
+
+    return 0;
+}
