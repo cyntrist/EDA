@@ -9,18 +9,30 @@
 
 
 // función que resuelve el problema
-bool resolver(TipoDatos datos)
+void resolver(int raiz, int dig, int maxDigitos)
 {
-
+	raiz *= 10;
+		
+	for (int i = 0; i < 10; i++)
+	{
+		raiz += i;
+		if (raiz % dig == 0)
+		{
+			std::cout << raiz << std::endl;
+			if (dig < maxDigitos)
+				resolver(raiz, dig + 1, maxDigitos);
+		}
+		raiz -= i;
+	}
 }
 
 void escribePolidivisibles(long long raiz, int maxDigitos)
 {
 	std::string longitud = std::to_string(raiz);
-    int d = longitud.length();
+	int d = longitud.length();
 	std::cout << raiz << "\n";
-    if (d < maxDigitos)
-        resolver(raiz, d+1, maxDigitos);
+	if (d < maxDigitos)
+		resolver(raiz, d + 1, maxDigitos);
 }
 
 // Resuelve un caso de prueba, leyendo de la entrada la
@@ -35,9 +47,7 @@ bool resuelveCaso()
 	int d = 0;
 	std::cin >> d;
 
-	std::pair<int, int> datos(n, d);
-
-	if (resolver(datos));
+	escribePolidivisibles(n, d);
 	std::cout << "---\n";
 	return true;
 }
