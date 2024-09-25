@@ -18,10 +18,10 @@ int minimo(const vector<int>& sec, int ini, int fin) {
 
     const int mit = (ini + fin) / 2;
 
-    int izq = minimo(sec, ini, mit);
-    int der = minimo(sec, mit, fin);
+    if (sec[mit] > sec[mit - 1]) // si la mitad es mayor que la anterior, estara a la izq
+        return minimo(sec, ini, mit);
 
-    return izq < der ? izq : der;
+    return minimo(sec, mit, fin);
 }
 
 // Resuelve un caso de prueba, leyendo de la entrada la
