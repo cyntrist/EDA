@@ -1,6 +1,5 @@
-// Nombre del alumno .....
-// Usuario del Juez ......
-
+// Nombre del alumno ..... Cynthia Tristán
+// Usuario del Juez ...... EDA-GDV73 
 
 #include <iostream>
 #include <iomanip>
@@ -30,9 +29,8 @@ int resolverInverso(int numero, int pot, int total) {
         else
             return pot * (numero % 10) + total;
     }
-    else {
-        return resolverInverso(numero / 10, pot / 10, pot * (numero % 10) + total);
-    }
+    else return resolverInverso(numero / 10, pot / 10, pot * (numero % 10) + total);
+   
 }
 
 // Resuelve un caso de prueba, leyendo de la entrada la

@@ -1,5 +1,5 @@
-// Cynthia Tristán Álvarez
-// VJ62
+// Nombre del alumno ..... Cynthia Tristán
+// Usuario del Juez ...... EDA-GDV73 
 
 #include <iostream>
 #include <iomanip>
@@ -16,20 +16,6 @@ int resolver(const vector<int>& v, int ini, int fin) {
 
     if (n < 2) // si tiene un elemento
 	    return ini;
-
-    /* Primera versión
-    if (mitad%2 == 0) // si las mitades son pares
-    { 
-        if (v[mitad] == v[mitad - 1]) // si la posicion mitad es igual al anterior
-			return resolver(v, ini, mitad); // mitad izq
-        return resolver(v, mitad, fin); // si la posicion mitad no es igual a la anterior, mitad der
-    }
-
-    // si las mitades son impares
-    if (v[mitad] == v[mitad - 1]) // si la posicion mitad es igual al anterior
-        return resolver(v, mitad, fin); // mitad der
-    return resolver(v, ini, mitad); // si la posicion mitad no es igual a la anterior, mitad izq
-    */
 
     /* Segunda versión */
     if (mitad%2 == 0) // si las mitades son pares

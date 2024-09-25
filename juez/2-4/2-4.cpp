@@ -1,19 +1,68 @@
-// 2-4.cpp : Este archivo contiene la función "main". La ejecución del programa comienza y termina ahí.
-//
+// Nombre del alumno ..... Cynthia Tristán
+// Usuario del Juez ...... EDA-GDV73 
+
 
 #include <iostream>
+#include <iomanip>
+#include <fstream>
+#include <vector>
 
-int main()
-{
-    std::cout << "Hello World!\n";
+
+// O(n)
+// función que resuelve el problema
+bool resolver(std::vector<int> n, int d, int ini, int fin) {
+	const int cant = fin - ini;
+	if (cant == 1) // unitario
+		return true; // por definicion
+	if (cant == 2) // doble
+		return abs(n[ini + 1] - n[ini]) >= d;
+
+    // por enunciado, ambas mitades y el vector entero han de cumplir la condicion
+	const int mitad = (ini + fin) / 2; // indice medio
+
+	const bool izq = resolver(n, d, ini, mitad);
+	const bool der = resolver(n, d, mitad, fin);
+	const int diff = abs(n[fin - 1] - n[ini]);
+
+	return izq && der && diff >= d;
 }
 
-// Ejecutar programa: Ctrl + F5 o menú Depurar > Iniciar sin depurar
-// Depurar programa: F5 o menú Depurar > Iniciar depuración
+// Resuelve un caso de prueba, leyendo de la entrada la
+// configuración, y escribiendo la respuesta
+bool resuelveCaso() {
+    int n = 0, d = 0;
+    std::cin >> n >> d;
 
-// Sugerencias para primeros pasos: 1. Use la ventana del Explorador de soluciones para agregar y administrar archivos
-//   2. Use la ventana de Team Explorer para conectar con el control de código fuente
-//   3. Use la ventana de salida para ver la salida de compilación y otros mensajes
-//   4. Use la ventana Lista de errores para ver los errores
-//   5. Vaya a Proyecto > Agregar nuevo elemento para crear nuevos archivos de código, o a Proyecto > Agregar elemento existente para agregar archivos de código existentes al proyecto
-//   6. En el futuro, para volver a abrir este proyecto, vaya a Archivo > Abrir > Proyecto y seleccione el archivo .sln
+    if (! std::cin)
+        return false;
+
+    std::vector<int> datos(n);
+
+    for (int& i : datos)
+        std::cin >> i;
+
+    std::cout << (resolver(datos, d, 0, datos.size()) ? "SI\n" : "NO\n" );
+    return true;
+}
+
+int main() {
+    // Para la entrada por fichero.
+    // Comentar para acepta el reto
+    #ifndef DOMJUDGE
+     std::ifstream in("datos.txt");
+     auto cinbuf = std::cin.rdbuf(in.rdbuf()); //save old buf and redirect std::cin to casos.txt
+     #endif 
+    
+    
+    while (resuelveCaso())
+        ;
+
+    
+    // Para restablecer entrada. Comentar para acepta el reto
+     #ifndef DOMJUDGE // para dejar todo como estaba al principio
+     std::cin.rdbuf(cinbuf);
+     system("PAUSE");
+     #endif
+    
+    return 0;
+}
