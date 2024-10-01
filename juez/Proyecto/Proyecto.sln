@@ -63,6 +63,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2", "2", "{8198E2D2-ECB4-49
 		..\plantillas\2\PlantillaParcialmenteOrdenado.cpp = ..\plantillas\2\PlantillaParcialmenteOrdenado.cpp
 		..\plantillas\2\PlantillaSoloUnImpar.cpp = ..\plantillas\2\PlantillaSoloUnImpar.cpp
 		..\plantillas\2\T2PlantillaFugaPrision.cpp = ..\plantillas\2\T2PlantillaFugaPrision.cpp
+		..\plantillas\2\T2PlantillaRepsMenosUno.cpp = ..\plantillas\2\T2PlantillaRepsMenosUno.cpp
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "2-6", "..\2-6\2-6.vcxproj", "{421C84F1-60F4-4838-9579-C72016F75850}"
@@ -79,7 +80,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "2-11", "..\2-11\2-11.vcxpro
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "2-12", "..\2-12\2-12.vcxproj", "{F08681BE-8B55-414D-AE61-B2C62B5B1979}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "2-14", "..\2-14\2-14.vcxproj", "{9782B449-9AB0-451F-862E-8FA2121E8C3D}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "2-13", "..\2-14\2-14.vcxproj", "{9782B449-9AB0-451F-862E-8FA2121E8C3D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
