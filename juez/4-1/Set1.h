@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <string>
 #include <iostream>
+#include "set.h"
 
 #ifndef SET1_H
 #define SET1_H
