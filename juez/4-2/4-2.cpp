@@ -49,21 +49,31 @@ public: // constructoras
 
 	Horas& operator=(const Horas& other)
 	{
-		if (this != &other) {  
-            h = other.h;
-            m = other.m;
-            s = other.s;
+		if (this != &other)
+		{
+			h = other.h;
+			m = other.m;
+			s = other.s;
 
-            if (!validate()) 
-                throw std::invalid_argument("ERROR");
-        }
-        return *this;  
+			if (!validate())
+				throw std::invalid_argument("ERROR");
+		}
+		return *this;
+	}
+
+	bool operator==(const Horas& o) const
+	{
+		return
+			h == o.h &&
+			m == o.m &&
+			s == o.s;
 	}
 
 	friend std::ostream& operator<<(std::ostream& out, const Horas& h);
 	// friend porque accede a campos privados pero es funcion externa
 	friend std::istream& operator>>(std::istream& in, Horas& h);
 	// friend porque accede a campos privados pero es funcion externa
+	friend bool operator<=(const Horas& a, const Horas& b);
 };
 
 std::ostream& operator<<(std::ostream& out, const Horas& hora)
@@ -87,20 +97,57 @@ std::istream& operator>>(std::istream& in, Horas& hora)
 	return in;
 }
 
-// devuelve la hora del siguiente tren segun la consultada
-bool siguiente(const std::vector<Horas>& trenes, const Horas& consulta, Horas& siguiente)
+bool operator<=(const Horas& a, const Horas& b)
 {
+	return a == b || a < b;
+}
+
+// devuelve la hora del siguiente tren segun la consultada
+bool siguiente(const std::vector<Horas>& trenes, const Horas& consulta, Horas& sig,
+               int ini = 0, int fin = 0)
+{
+	// EL LISTADO DE HORAS VIENE ORDENADO;
+	// HAY QUE HACER USO DE LOS OPERADORES < = <=
+	// PARA HACER UNA BÚSQUEDA BINARIA!!!!
+
+
+
+
+	//const int n = fin - ini;
+	//const int mit = (ini + fin) / 2;
+
+	//if (n == 0)
+	//	return false;
+	//if (consulta <= trenes[ini])
+	//{
+	//	sig = trenes[ini];
+	//	return true;
+	//}
+	//if (consulta < trenes[mit]) // búsqueda a la izquierda
+	//	siguiente(trenes, consulta, sig, ini, mit);
+	//else if (trenes[mit] < consulta)
+	//	siguiente(trenes, consulta, sig, mit, fin);
+	//else if (consulta == trenes[mit])
+	//{
+	//	sig = trenes[mit];
+	//	return true;
+	//}
+
+
+
+
+	/* busqueda convencional */
 	unsigned int i = 0;
 	while (i < trenes.size())
 	{
-		if (consulta < trenes[i])
+		if (consulta <= trenes[i])
 		{
-			siguiente = trenes[i];
+			sig = trenes[i];
 			return true;
 		}
 		i++;
 	}
-	return false;
+	return false; 
 }
 
 // Resuelve un caso de prueba, leyendo de la entrada la
@@ -123,12 +170,12 @@ bool resuelveCaso()
 		try
 		{
 			std::cin >> consulta;
-			if (siguiente(trenes, consulta, sig))
+			if (siguiente(trenes, consulta, sig, 0, n))
 				std::cout << sig << std::endl;
 			else
 				std::cout << "NO\n";
 		}
-		catch (const std::invalid_argument& e) 
+		catch (const std::invalid_argument& e)
 		{
 			std::cout << e.what() << std::endl;
 		}
