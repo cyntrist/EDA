@@ -47,6 +47,14 @@ public: // constructoras
 			(h == hora.h && m == hora.m && s < hora.s);
 	}
 
+	bool operator>(const Horas& hora) const
+	{
+		return
+			(h > hora.h) ||
+			(h == hora.h && m > hora.m) ||
+			(h == hora.h && m == hora.m && s > hora.s);
+	}
+
 	Horas& operator=(const Horas& other)
 	{
 		if (this != &other)
@@ -74,6 +82,7 @@ public: // constructoras
 	friend std::istream& operator>>(std::istream& in, Horas& h);
 	// friend porque accede a campos privados pero es funcion externa
 	friend bool operator<=(const Horas& a, const Horas& b);
+	friend bool operator>=(const Horas& a, const Horas& b);
 };
 
 std::ostream& operator<<(std::ostream& out, const Horas& hora)
@@ -102,41 +111,21 @@ bool operator<=(const Horas& a, const Horas& b)
 	return a == b || a < b;
 }
 
+bool operator>=(const Horas& a, const Horas& b)
+{
+	return a == b || a > b;
+}
+
 // devuelve la hora del siguiente tren segun la consultada
 bool siguiente(const std::vector<Horas>& trenes, const Horas& consulta, Horas& sig,
-               int ini = 0, int fin = 0)
+               int ini, int fin)
 {
-	// EL LISTADO DE HORAS VIENE ORDENADO;
-	// HAY QUE HACER USO DE LOS OPERADORES < = <=
-	// PARA HACER UNA BÚSQUEDA BINARIA!!!!
+	int n = fin - ini;
+	int mit = (ini + fin) / 2;
+
+	// no se hacer la puta busqueda binaria
 
 
-
-
-	//const int n = fin - ini;
-	//const int mit = (ini + fin) / 2;
-
-	//if (n == 0)
-	//	return false;
-	//if (consulta <= trenes[ini])
-	//{
-	//	sig = trenes[ini];
-	//	return true;
-	//}
-	//if (consulta < trenes[mit]) // búsqueda a la izquierda
-	//	siguiente(trenes, consulta, sig, ini, mit);
-	//else if (trenes[mit] < consulta)
-	//	siguiente(trenes, consulta, sig, mit, fin);
-	//else if (consulta == trenes[mit])
-	//{
-	//	sig = trenes[mit];
-	//	return true;
-	//}
-
-
-
-
-	/* busqueda convencional */
 	unsigned int i = 0;
 	while (i < trenes.size())
 	{
@@ -170,7 +159,7 @@ bool resuelveCaso()
 		try
 		{
 			std::cin >> consulta;
-			if (siguiente(trenes, consulta, sig, 0, n))
+			if (siguiente(trenes, consulta, sig, 0, trenes.size()))
 				std::cout << sig << std::endl;
 			else
 				std::cout << "NO\n";
