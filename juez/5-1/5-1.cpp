@@ -10,6 +10,7 @@
 
 
 // función que resuelve el problema
+// O(n) siendo n la longitud del string
 // stack.empty() es de complejidad constante
 bool resolver(std::string linea)
 {
