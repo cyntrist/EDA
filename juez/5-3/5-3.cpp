@@ -6,77 +6,96 @@
 #include <iomanip>
 #include <fstream>
 #include <stack>
+#include "LinkedListStack.h"
+using namespace std;
 
 
-// función que resuelve el problema
-// O(2n) = O(n) siendo n el tamaño de la pila
-void resolver(std::stack<int>& pila) {
-    std::stack<int> aux;
+// función externa que resuelve el problema sobre stack
+// O(2n) = O(n) siendo n la longitud de la pila
+void duplicar(stack<int>& s)
+{
+	std::stack<int> aux;
 
-    while(!pila.empty())
-    {
-        aux.push(pila.top());
-	    pila.pop();
-    }
+	while (!s.empty())
+	{
+		aux.push(s.top());
+		s.pop();
+	}
 
-    while (!aux.empty())
-    {
-	    pila.push(aux.top());
-	    pila.push(aux.top());
-        aux.pop();
-    }
+	while (!aux.empty())
+	{
+		s.push(aux.top());
+		s.push(aux.top());
+		aux.pop();
+	}
 }
+
+// Clase extendida con operación interna duplicar que reaprovecha nodos existentes
+template <class T>
+class LinkedListStack_plus : public LinkedListStack<T>
+{
+	using Nodo = typename LinkedListStack<T>::Nodo;
+
+public:
+	void duplicar()
+	{
+		if (this->empty()) return;
+
+		Nodo* actual = this->cima;
+		while (actual != nullptr)
+		{
+			Nodo* aux = new Nodo(actual->elem, actual->sig);
+			actual->sig = aux;
+			actual = aux->sig;
+		}
+	}
+};
+
 
 // Resuelve un caso de prueba, leyendo de la entrada la
 // configuración, y escribiendo la respuesta
-bool resuelveCaso() {
-    int n = 0;
-    std::cin >> n;
-    if (! std::cin)
-        return false;
-
-    std::stack<int> pila;
-	while (n != 0) {
-		pila.push(n);
-		std::cin >> n;
+bool resuelveCaso()
+{
+	// leer los datos de la entrada
+	int e;
+	//stack<int> s;
+	LinkedListStack_plus<int> s;
+	cin >> e;
+	if (!cin) return false;
+	while (e != 0)
+	{
+		s.push(e);
+		cin >> e;
 	}
+	//duplicar(s);
+	s.duplicar();
 
-	resolver(pila); 
-
-	//// escribir sol (pero antes dar una vuelta para comprobar que la pila está bien formada)
-	//for (int i = 0; i < pila.size(); ++i) {
-	//	n = pila.top();
-	//	pila.pop();
-	//	pila.push(n);
-	//}
-	// ahora imprimimos la cola y de paso la dejamos vacía
-	while (!pila.empty()) {
-		std::cout << pila.top() << " ";
-		pila.pop();
+	// Ahora imprimimos la pila de cima a base y de paso la dejamos vacía
+	while (!s.empty())
+	{
+		cout << s.top() << " ";
+		s.pop();
 	}
-    std::cout << std::endl;
-    
-    return true;
+	cout << endl;
+	return true;
 }
 
-int main() {
-    // Para la entrada por fichero.
-    // Comentar para acepta el reto
-    #ifndef DOMJUDGE
-     std::ifstream in("datos.txt");
-     auto cinbuf = std::cin.rdbuf(in.rdbuf()); //save old buf and redirect std::cin to casos.txt
-     #endif 
-    
-    
-    while (resuelveCaso())
-        ;
+int main()
+{
+	// Para la entrada por fichero.
+	// Comentar para acepta el reto
+#ifndef DOMJUDGE
+	std::ifstream in("datos.txt");
+	auto cinbuf = std::cin.rdbuf(in.rdbuf()); //save old buf and redirect std::cin to casos.txt
+#endif
 
-    
-    // Para restablecer entrada. Comentar para acepta el reto
-     #ifndef DOMJUDGE // para dejar todo como estaba al principio
-     std::cin.rdbuf(cinbuf);
-     system("PAUSE");
-     #endif
-    
-    return 0;
+	while (resuelveCaso());
+
+	// Para restablecer entrada. Comentar para acepta el reto
+#ifndef DOMJUDGE // para dejar todo como estaba al principio
+	std::cin.rdbuf(cinbuf);
+	//system("PAUSE");
+#endif
+
+	return 0;
 }

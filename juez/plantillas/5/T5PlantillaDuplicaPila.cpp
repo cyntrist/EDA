@@ -9,6 +9,20 @@ using namespace std;
 
 // función externa que resuelve el problema sobre stack
 void duplicar(stack<int>& s){
+    std::stack<int> aux;
+
+    while(!s.empty())
+    {
+        aux.push(s.top());
+	    s.pop();
+    }
+
+    while (!aux.empty())
+    {
+	    s.push(aux.top());
+	    s.push(aux.top());
+        aux.pop();
+    }
 }
 
 // Clase extendida con operación interna duplicar que reaprovecha nodos existentes

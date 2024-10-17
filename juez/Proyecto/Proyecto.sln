@@ -131,6 +131,17 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "5-4", "..\5-4\5-4.vcxproj",
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "5-5", "..\5-5\5-5.vcxproj", "{96934F33-9C7C-4408-B04A-3DF56F38870C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5", "5", "{4BAB24DE-990D-44CB-8867-B96B844E3CFD}"
+	ProjectSection(SolutionItems) = preProject
+		..\plantillas\5\Plantilla Inclusion.cpp = ..\plantillas\5\Plantilla Inclusion.cpp
+		..\plantillas\5\PlantillaCuela.cpp = ..\plantillas\5\PlantillaCuela.cpp
+		..\plantillas\5\PlantillaDuplica.cpp = ..\plantillas\5\PlantillaDuplica.cpp
+		..\plantillas\5\PlantillaInvertirSegmento.cpp = ..\plantillas\5\PlantillaInvertirSegmento.cpp
+		..\plantillas\5\T5PlantillaAdelantarSegmento.cpp = ..\plantillas\5\T5PlantillaAdelantarSegmento.cpp
+		..\plantillas\5\T5PlantillaDuplicaPila.cpp = ..\plantillas\5\T5PlantillaDuplicaPila.cpp
+		..\plantillas\5\T5PlantillaRepetirElemsMult.cpp = ..\plantillas\5\T5PlantillaRepetirElemsMult.cpp
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -505,6 +516,7 @@ Global
 		{B2647A06-2D4E-4B6A-AF85-06003D00C09F} = {BC0F9679-4793-4E60-B499-75C797E9AB99}
 		{8C2E389E-2D78-4FC0-A9BA-CCA8573695CF} = {BC0F9679-4793-4E60-B499-75C797E9AB99}
 		{96934F33-9C7C-4408-B04A-3DF56F38870C} = {BC0F9679-4793-4E60-B499-75C797E9AB99}
+		{4BAB24DE-990D-44CB-8867-B96B844E3CFD} = {D2FE0EB7-4744-4A1C-A321-0DD23E66E4B7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {71926007-8EB4-4B4D-A783-AA5272928E85}
