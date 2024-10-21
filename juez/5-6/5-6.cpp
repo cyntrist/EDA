@@ -28,19 +28,21 @@ public:
 
 		if (actual == nullptr) return; // no esta a
 
-		//Nodo* colega = b.prim;
-		//int i = 0;
-		//while (colega != nullptr)
-		//{
-		//	i++;
-		//	colega = colega->sig;
-		//}
+		Nodo* colega = b.prim;
+		int i = 0;
+		while (colega != nullptr)
+		{
+			i++;
+			colega = colega->sig;
+		}
 
 		//// si esta a, a partir de actual se inserta b
-		//b.ult->sig = actual->sig;
-		//actual->sig = b.prim;
+		b.ult->sig = actual->sig;
+		actual->sig = b.prim;
 
-		//this->nelems += i;
+		this->nelems += i;
+
+		while (!b.empty()) b.pop();
 	}
 };
 
