@@ -14,21 +14,32 @@ class queue_plus : public queue<T>
 	using Nodo = typename queue<T>::Nodo;
 
 public:
-	void duplica()
+	void cuela(const T& a, queue<T>& b)
 	{
 		// Ojo que para acceder a prim o ult hay que escribir this->prim o this->ult
+
 		if (this->empty()) return;
+		if (b.empty()) return;
 
 		Nodo* actual = this->prim;
-		Nodo* duplicado = nullptr;
+		Nodo* siguiente = actual->sig;
+
+		Nodo* actual2 = b->prim; // esto esta mal
+		Nodo* siguiente2 = actual2->sig;
+
 		while (actual != nullptr)
 		{
-			duplicado = new Nodo(actual->elem, actual->sig);
-			actual->sig = duplicado;
-			actual = duplicado->sig;
-			++this->nelems;
+			if (actual->elem == a)
+			{	// colar // nada de news ni delete
+				while (actual2 != nullptr)
+				{
+					
+				}
+			}
+			// seguir igualmente 
+			actual = siguiente;
+			siguiente = actual->sig;
 		}
-		this->ult = duplicado;
 	}
 };
 
@@ -38,18 +49,25 @@ public:
 bool resuelveCaso()
 {
 	// leer los datos de la entrada
-	int n;
+	int n, a;
 	queue_plus<int> q;
+	queue_plus<int> c; // colegas
 	cin >> n;
-	if (!cin) return false;
-	while (n != 0)
+	if (n == -1) return false;
+	while (n != -1)
 	{
 		q.push(n);
 		cin >> n;
 	}
+	cin >> a;
+	while (n != -1)
+	{
+		c.push(n);
+		cin >> n;
+	}
 
 	// llamada a metodo
-	q.duplica();
+	q.cuela(a, c);
 
 	// escribir sol (pero antes dar una vuelta para comprobar que la cola está bien formada)
 	for (int i = 0; i < q.size(); ++i)
