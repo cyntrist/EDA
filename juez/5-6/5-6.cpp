@@ -22,24 +22,25 @@ public:
 		if (b.empty()) return;
 
 		Nodo* actual = this->prim;
-		Nodo* siguiente = actual->sig;
 
-		Nodo* actual2 = b->prim; // esto esta mal
-		Nodo* siguiente2 = actual2->sig;
+		while (actual != nullptr && actual->elem != a)
+			actual = actual->sig;
 
-		while (actual != nullptr)
-		{
-			if (actual->elem == a)
-			{	// colar // nada de news ni delete
-				while (actual2 != nullptr)
-				{
-					
-				}
-			}
-			// seguir igualmente 
-			actual = siguiente;
-			siguiente = actual->sig;
-		}
+		if (actual == nullptr) return; // no esta a
+
+		//Nodo* colega = b.prim;
+		//int i = 0;
+		//while (colega != nullptr)
+		//{
+		//	i++;
+		//	colega = colega->sig;
+		//}
+
+		//// si esta a, a partir de actual se inserta b
+		//b.ult->sig = actual->sig;
+		//actual->sig = b.prim;
+
+		//this->nelems += i;
 	}
 };
 
@@ -50,39 +51,46 @@ bool resuelveCaso()
 {
 	// leer los datos de la entrada
 	int n, a;
-	queue_plus<int> q;
+	queue_plus<int> q; // cola normal
 	queue_plus<int> c; // colegas
-	cin >> n;
-	if (n == -1) return false;
-	while (n != -1)
+	cin >> n; // n casos
+
+	for (int i = 0; i < n; i++)
 	{
-		q.push(n);
-		cin >> n;
-	}
-	cin >> a;
-	while (n != -1)
-	{
-		c.push(n);
-		cin >> n;
+		int m = 0;
+		cin >> m;
+		while (m != -1)
+		{
+			q.push(m);
+			cin >> m;
+		}
+		cin >> a;
+		cin >> m;
+		while (m != -1)
+		{
+			c.push(m);
+			cin >> m;
+		}
+
+		// llamada a metodo
+		q.cuela(a, c);
+
+		// escribir sol (pero antes dar una vuelta para comprobar que la cola está bien formada)
+		for (int j = 0; j < q.size(); ++j)
+		{
+			m = q.front();
+			q.pop();
+			q.push(m);
+		}
+		// Ahora imprimimos la cola y de paso la dejamos vacía
+		while (!q.empty())
+		{
+			cout << q.front() << " ";
+			q.pop();
+		}
+		cout << endl;
 	}
 
-	// llamada a metodo
-	q.cuela(a, c);
-
-	// escribir sol (pero antes dar una vuelta para comprobar que la cola está bien formada)
-	for (int i = 0; i < q.size(); ++i)
-	{
-		n = q.front();
-		q.pop();
-		q.push(n);
-	}
-	// Ahora imprimimos la cola y de paso la dejamos vacía
-	while (!q.empty())
-	{
-		cout << q.front() << " ";
-		q.pop();
-	}
-	cout << endl;
 	return true;
 }
 

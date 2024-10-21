@@ -31,16 +31,17 @@ protected:
       T elem;
       Nodo * sig;
    };
+  
    
+public:
    // punteros al primer y último elemento
    Nodo * prim;
    Nodo * ult;
    
    // número de elementos en la cola
    int nelems;
-   
-public:
-   
+
+
    // constructor: cola vacía
    queue() : prim(nullptr), ult(nullptr), nelems(0) {}
    
