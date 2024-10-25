@@ -129,6 +129,9 @@
   <ItemGroup>
     <ClCompile Include="5-8.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\5-7\list_eda.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
