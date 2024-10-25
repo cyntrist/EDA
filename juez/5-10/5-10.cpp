@@ -54,11 +54,11 @@ public:
 				ultimo = this->ult;
 
 				for (int j = 0; j < mult[i] - 1; ++j) 
-					this->push(actual->elem);
+					this->push(actual->elem); // se anaden al final
 
 				anterior = this->ult;
 				if (siguiente != nullptr)
-				{
+				{ // se actualizan las relaciones
 					actual->sig = ultimo->sig;
 					this->ult->sig = siguiente;
 					this->ult = ultimo;
