@@ -152,6 +152,22 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "5-8", "..\5-8\5-8.vcxproj",
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "5-9", "..\5-9\5-9.vcxproj", "{822175E8-63CC-4A4D-8407-E90605B13D3A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6", "6", "{C4BCEE34-1845-4161-955A-1F7F1483B8C7}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "6-1", "..\6-1\6-1.vcxproj", "{85943C49-1215-4BC6-B590-BC28BB951DEF}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "6-2", "..\6-2\6-2.vcxproj", "{DA360755-E207-4C54-A0BE-47F14621B96C}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "6-3", "..\6-3\6-3.vcxproj", "{620066E7-2597-4B03-96ED-25268013BDAD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6", "6", "{CB016EB0-68C0-49F4-BB70-B3C4EE1E2A02}"
+	ProjectSection(SolutionItems) = preProject
+		..\plantillas\6\PlantillaNodosHojasYAltura.cpp = ..\plantillas\6\PlantillaNodosHojasYAltura.cpp
+		..\plantillas\6\PlantillaSingulares.cpp = ..\plantillas\6\PlantillaSingulares.cpp
+		..\plantillas\6\PlantillaTramosNavegables.cpp = ..\plantillas\6\PlantillaTramosNavegables.cpp
+		..\plantillas\6\PlantillaZurdos.cpp = ..\plantillas\6\PlantillaZurdos.cpp
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -520,6 +536,30 @@ Global
 		{822175E8-63CC-4A4D-8407-E90605B13D3A}.Release|x64.Build.0 = Release|x64
 		{822175E8-63CC-4A4D-8407-E90605B13D3A}.Release|x86.ActiveCfg = Release|Win32
 		{822175E8-63CC-4A4D-8407-E90605B13D3A}.Release|x86.Build.0 = Release|Win32
+		{85943C49-1215-4BC6-B590-BC28BB951DEF}.Debug|x64.ActiveCfg = Debug|x64
+		{85943C49-1215-4BC6-B590-BC28BB951DEF}.Debug|x64.Build.0 = Debug|x64
+		{85943C49-1215-4BC6-B590-BC28BB951DEF}.Debug|x86.ActiveCfg = Debug|Win32
+		{85943C49-1215-4BC6-B590-BC28BB951DEF}.Debug|x86.Build.0 = Debug|Win32
+		{85943C49-1215-4BC6-B590-BC28BB951DEF}.Release|x64.ActiveCfg = Release|x64
+		{85943C49-1215-4BC6-B590-BC28BB951DEF}.Release|x64.Build.0 = Release|x64
+		{85943C49-1215-4BC6-B590-BC28BB951DEF}.Release|x86.ActiveCfg = Release|Win32
+		{85943C49-1215-4BC6-B590-BC28BB951DEF}.Release|x86.Build.0 = Release|Win32
+		{DA360755-E207-4C54-A0BE-47F14621B96C}.Debug|x64.ActiveCfg = Debug|x64
+		{DA360755-E207-4C54-A0BE-47F14621B96C}.Debug|x64.Build.0 = Debug|x64
+		{DA360755-E207-4C54-A0BE-47F14621B96C}.Debug|x86.ActiveCfg = Debug|Win32
+		{DA360755-E207-4C54-A0BE-47F14621B96C}.Debug|x86.Build.0 = Debug|Win32
+		{DA360755-E207-4C54-A0BE-47F14621B96C}.Release|x64.ActiveCfg = Release|x64
+		{DA360755-E207-4C54-A0BE-47F14621B96C}.Release|x64.Build.0 = Release|x64
+		{DA360755-E207-4C54-A0BE-47F14621B96C}.Release|x86.ActiveCfg = Release|Win32
+		{DA360755-E207-4C54-A0BE-47F14621B96C}.Release|x86.Build.0 = Release|Win32
+		{620066E7-2597-4B03-96ED-25268013BDAD}.Debug|x64.ActiveCfg = Debug|x64
+		{620066E7-2597-4B03-96ED-25268013BDAD}.Debug|x64.Build.0 = Debug|x64
+		{620066E7-2597-4B03-96ED-25268013BDAD}.Debug|x86.ActiveCfg = Debug|Win32
+		{620066E7-2597-4B03-96ED-25268013BDAD}.Debug|x86.Build.0 = Debug|Win32
+		{620066E7-2597-4B03-96ED-25268013BDAD}.Release|x64.ActiveCfg = Release|x64
+		{620066E7-2597-4B03-96ED-25268013BDAD}.Release|x64.Build.0 = Release|x64
+		{620066E7-2597-4B03-96ED-25268013BDAD}.Release|x86.ActiveCfg = Release|Win32
+		{620066E7-2597-4B03-96ED-25268013BDAD}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -572,6 +612,10 @@ Global
 		{87125107-551F-446F-8FA4-FD2892F66853} = {BC0F9679-4793-4E60-B499-75C797E9AB99}
 		{51DD38DC-2C6A-4E64-8019-00763EC76527} = {BC0F9679-4793-4E60-B499-75C797E9AB99}
 		{822175E8-63CC-4A4D-8407-E90605B13D3A} = {BC0F9679-4793-4E60-B499-75C797E9AB99}
+		{85943C49-1215-4BC6-B590-BC28BB951DEF} = {C4BCEE34-1845-4161-955A-1F7F1483B8C7}
+		{DA360755-E207-4C54-A0BE-47F14621B96C} = {C4BCEE34-1845-4161-955A-1F7F1483B8C7}
+		{620066E7-2597-4B03-96ED-25268013BDAD} = {C4BCEE34-1845-4161-955A-1F7F1483B8C7}
+		{CB016EB0-68C0-49F4-BB70-B3C4EE1E2A02} = {D2FE0EB7-4744-4A1C-A321-0DD23E66E4B7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {71926007-8EB4-4B4D-A783-AA5272928E85}
