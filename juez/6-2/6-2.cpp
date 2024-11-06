@@ -1,68 +1,66 @@
-// Nombre del alumno ..... Cynthia Tristán
-// Usuario del Juez ...... EDA-GDV73 
-
 #include <iostream>
 #include <iomanip>
 #include <fstream>
+#include <vector>
+#include <list>
 #include "bintree_eda.h"
 using namespace std;
 
-
-// interno
 template <class T>
-class tree_plus : public bintree<T>
+int esHoja(const bintree<T>& tree)
 {
-	using Link = typename bintree<T>::Link;
-
-public:
-	vector<T> getFrontera() const
-	{
-		return getFrontera(this->raiz);
-	}
-
-private:
-	static vector<T> getFrontera(Link raiz)
-	{
-		return vector<T>();
-	}
-};
-
-//externo
-template <class T>
-vector<T> frontera(const bintree<T>& tree)
-{
-	//vector<T> solucion;
-	//if (tree.empty());
-	//else;
-	//return solucion;
+	if (tree.empty()) return false;
+	if (tree.left().empty() && tree.right().empty()) return true;
+	return false;
 }
 
 
+// Solución con vector acumulador (en este caso sería más sencilla)
+template <class T>
+void frontera(const bintree<T>& tree, vector<T>& acu)
+{
+	if (tree.empty()) return;
+	if (esHoja(tree)) acu.push_back(tree.root());
+	else
+	{
+		frontera(tree.left(), acu);
+		frontera(tree.right(), acu);
+	}
+}
+
+// Solución con recursión natural (splice es O(1) aunque ojo con posibles copias)
+template <class T>
+list<T> fronteraL(const bintree<T>& tree)
+{
+	if (tree.empty()) return {};
+	if (esHoja(tree)) return list<T>(1, tree.root()); // list<T> ret; ret.push_back(tree.raiz()); return ret;
+	list<T> frontIz = fronteraL(tree.left());
+	frontIz.splice(frontIz.end(), fronteraL(tree.right()));
+	return frontIz;
+}
+
+// Resuelve un caso de prueba, leyendo de la entrada la
+// configuración, y escribiendo la respuesta
 void resuelveCaso()
 {
-	// metodo 1
-	tree_plus<int> tree_plus;
-	static_cast<bintree<int>>(tree_plus) = leerArbol(-1);
-	vector<int> solucion = tree_plus.getFrontera();
-
-	// metodo 2
-	/*
+	// leer los datos de la entrada
+	int n;
 	bintree<int> tree;
 	tree = leerArbol(-1);
-	vector<int> solucion = frontera(tree);
-	*/
-
-	for (int e : solucion)
-		cout << e << " ";
+	vector<int> result;
+	frontera(tree, result);
+	//list<int> result = fronteraL(tree);
+	for (int e : result) cout << e << " ";
 	cout << endl;
 }
 
-
 int main()
 {
+	// Para la entrada por fichero.
+	// Comentar para acepta el reto
 #ifndef DOMJUDGE
-	std::ifstream in("datos.txt");
-	auto cinbuf = std::cin.rdbuf(in.rdbuf());
+	std::ifstream in("./datos.txt");
+	auto cinbuf = std::cin.rdbuf(in.rdbuf()); //save old buf and redirect std::cin to casos.txt
 #endif
 
 	int numCasos;
@@ -70,8 +68,11 @@ int main()
 	for (int i = 0; i < numCasos; ++i)
 		resuelveCaso();
 
-#ifndef DOMJUDGE
+	// Para restablecer entrada. Comentar para acepta el reto
+#ifndef DOMJUDGE // para dejar todo como estaba al principio
 	std::cin.rdbuf(cinbuf);
+	//system("PAUSE");
 #endif
+
 	return 0;
 }

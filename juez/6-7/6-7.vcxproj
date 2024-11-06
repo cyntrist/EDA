@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{da360755-e207-4c54-a0be-47f14621b96c}</ProjectGuid>
-    <RootNamespace>My62</RootNamespace>
+    <ProjectGuid>{0daf0bc9-10d2-465b-9f82-a7ae6ee92e7b}</ProjectGuid>
+    <RootNamespace>My67</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -127,12 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="6-2.cpp" />
-    <ClCompile Include="Frontera.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="bintree_eda.h" />
-    <ClInclude Include="set_eda.h" />
+    <ClCompile Include="6-7.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
