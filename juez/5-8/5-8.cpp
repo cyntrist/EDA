@@ -17,7 +17,7 @@ void eliminar(list<int>& l, int elem)
 	while (it != l.end())
 	{
 		if (*it == elem)
-			it = l.erase(it);// erase devuelve el iterador tras el elto eliminado
+			it = l.erase(it); // erase devuelve el iterador tras el elto eliminado
 		else
 			++it;
 	}

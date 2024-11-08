@@ -25,14 +25,14 @@ int complementario(int n)
 std::pair<int, int> inverso(int n)
 {
 	if (n < 10)
-		return { digito(n), 10 };
+		return {digito(n), 10};
 
 	std::pair<int, int> inv = inverso(n / 10);
 
-	int comp = inv.first; 
+	int comp = inv.first;
 	int pos = inv.second;
 
-	return { digito(n % 10) * pos + comp, pos * 10 };
+	return {digito(n % 10) * pos + comp, pos * 10};
 }
 
 // Resuelve un caso de prueba, leyendo de la entrada la

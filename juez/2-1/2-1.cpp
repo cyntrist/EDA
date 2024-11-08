@@ -12,7 +12,7 @@
 void resolver(int raiz, int dig, int maxDigitos)
 {
 	raiz *= 10;
-		
+
 	for (int i = 0; i < 10; i++)
 	{
 		raiz += i;

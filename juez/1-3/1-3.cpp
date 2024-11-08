@@ -13,7 +13,7 @@
 bool resolver(std::vector<int> datos, int p)
 {
 	if (p >= datos.size() - 1 || p < 0) return true;
-	
+
 	int i = 0;
 	int maxIzq = datos[p], minDer = datos[datos.size() - 1];
 

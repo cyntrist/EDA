@@ -136,7 +136,7 @@ bool siguiente(const std::vector<Hora>& trenes, const Hora& consulta, Hora& sig,
 		}
 		i++;
 	}
-	return false; 
+	return false;
 }
 
 // Resuelve un caso de prueba, leyendo de la entrada la

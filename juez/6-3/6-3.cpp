@@ -10,18 +10,42 @@ using namespace std;
 
 
 template <class T>
-T minimo(const bintree<T>& tree)
+T minimo(const bintree<T>& tree) // O(n) siendo n el num de nodos del arbol
 {
-	T min = tree.root();
-	if (tree.left().empty() && tree.right().empty()) 
-		return min;
-	if (tree.left().empty())
-		if (min > minimo(tree.right())) 
-			min = tree.right().root();
-	if (tree.right().empty())
-		if (min > minimo(tree.left())) 
-			min = tree.left().root();
-	return min;
+	/// 3er intento:
+	auto m = tree.root();
+	if (!tree.left().empty())
+		m = min(m, minimo(tree.left()));
+	if (!tree.right().empty())
+		m = min(m, minimo(tree.right()));
+	return m;
+
+	/// 2o intento:
+	//T min = tree.root();
+	//T izq = min,
+	//  der = min;
+
+	//if (!tree.left().empty())
+	//	izq = tree.left().root();
+	//if (!tree.right().empty())
+	//	der = tree.right().root();
+
+	//if (tree.left().empty() && tree.right().empty())
+	//	return min;
+
+	//if (izq <= der && izq < min)
+	//	return minimo(tree.left());
+	//if (der <= izq && der < min)
+	//	return minimo(tree.right());
+
+	/// 1er intento:
+	//if (tree.left().empty() && tree.right().empty())
+	//	return min;
+	//if (!tree.right().empty() && min > minimo(tree.right()))
+	//	return minimo(tree.right());
+	//if (!tree.left().empty() && min > minimo(tree.left()))
+	//	return minimo(tree.left());
+	//return min;
 }
 
 

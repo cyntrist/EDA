@@ -22,7 +22,7 @@ bool esFeliz(int n)
 		while (n != 0) // division en digitos y suma de cuadrados
 		{
 			const int dig = n % 10;
-			sum = sum + dig * dig ; // pow() es constante
+			sum = sum + dig * dig; // pow() es constante
 			n /= 10;
 		}
 		n = sum;
@@ -32,7 +32,7 @@ bool esFeliz(int n)
 		// esto significa que si la suma ya se encuentra en el set, hemos ciclado una vez
 		// y por tanto el numero no puede ser feliz :/
 		if (set.find(sum) != set.end()) // find() tipo iterator, complejidad 0(log n) siendo n el tamano del set
-			return false; 
+			return false;
 
 		// si no lo ha encontrado, continua el bucle como de normal y lo anade a la lista
 		set.insert(sum); // tipo pair, complejidad 0(log n) siendo n el tamano del set

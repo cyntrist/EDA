@@ -21,7 +21,7 @@ void resuelve(list<int>& lista)
 	while (sig != lista.end())
 	{
 		if (*it > *sig)
-			sig = lista.erase(sig);// erase devuelve el iterador tras el elto eliminado
+			sig = lista.erase(sig); // erase devuelve el iterador tras el elto eliminado
 		else
 		{
 			++it;

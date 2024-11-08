@@ -16,20 +16,20 @@ using namespace std;
 void comparaListados(const vector<string>& eda, const vector<string>& tpv,
                      vector<string>& comunes, vector<string>& soloEda, vector<string>& soloTpv)
 {
-    set<string> setEda(eda.begin(), eda.end());
-    set<string> setTpv(tpv.begin(), tpv.end());
-    
-    for (const string& alumno : eda) 
-        if (setTpv.find(alumno) != setTpv.end()) 
-            comunes.push_back(alumno);
-    
-    for (const string& alumno : eda)
-        if (setTpv.find(alumno) == setTpv.end()) 
-            soloEda.push_back(alumno);
-    
-    for (const string& alumno : tpv) 
-        if (setEda.find(alumno) == setEda.end()) 
-            soloTpv.push_back(alumno);
+	set<string> setEda(eda.begin(), eda.end());
+	set<string> setTpv(tpv.begin(), tpv.end());
+
+	for (const string& alumno : eda)
+		if (setTpv.find(alumno) != setTpv.end())
+			comunes.push_back(alumno);
+
+	for (const string& alumno : eda)
+		if (setTpv.find(alumno) == setTpv.end())
+			soloEda.push_back(alumno);
+
+	for (const string& alumno : tpv)
+		if (setEda.find(alumno) == setEda.end())
+			soloTpv.push_back(alumno);
 }
 
 // Resuelve un caso de prueba, leyendo de la entrada la

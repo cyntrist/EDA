@@ -253,7 +253,7 @@ public:
 
 		int i = 0, j = 0, k = 0;
 
-		while(i < nelems && j < other.nelems)
+		while (i < nelems && j < other.nelems)
 		{
 			//if (array[i] != other.array[j])
 			//{
@@ -282,7 +282,7 @@ public:
 			else j++;
 		}
 
-		while (i <  nelems)
+		while (i < nelems)
 		{
 			diff.array[k] = array[i];
 			k++;

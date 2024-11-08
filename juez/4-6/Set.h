@@ -132,30 +132,34 @@ public:
 	}
 
 	// Consultr array. O(1)
-	const T* toArray() const {
+	const T* toArray() const
+	{
 		return array;
 	}
 
 	// Consultar el maximo elemento. O(1)
-	int getMax() const {
+	int getMax() const
+	{
 		return array[nelems - 1];
 	}
 
 	// O(log n) donde n es el n de eltos, es una busqueda binaria
-	void removeMax() {
+	void removeMax()
+	{
 		remove(getMax());
 	}
 
 	// O(1)
-	int getMin() const {
+	int getMin() const
+	{
 		return array[0];
 	}
 
 	// O(log n) donde n es el n de eltos, es una busqueda binaria
-	void removeMin() {
+	void removeMin()
+	{
 		remove(getMin());
 	}
-
 
 
 	/// OPERATORS

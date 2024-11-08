@@ -8,11 +8,13 @@ class Pelicula
 
 public:
 	Pelicula() = default;
+
 	Pelicula(const Hora& hora, const Hora& duracion, std::string& titulo)
 		: hora(hora), duracion(duracion), titulo(titulo)
 	{
 		fin = hora + duracion;
 	}
+
 	Pelicula(const Pelicula& pelicula) = default;
 	~Pelicula() = default;
 
@@ -21,7 +23,9 @@ public:
 	Hora getFin() const { return fin; }
 	std::string getTitulo() { return titulo; }
 
-	bool operator<(const Pelicula& p) const { // ordenados por quien acaba antes y alfabeticamente en defecto
+	bool operator<(const Pelicula& p) const
+	{
+		// ordenados por quien acaba antes y alfabeticamente en defecto
 		return fin < p.fin || (fin == p.fin && titulo < p.titulo);
 	}
 };

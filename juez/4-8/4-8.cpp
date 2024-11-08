@@ -12,25 +12,25 @@
 // configuración, y escribiendo la respuesta
 bool resuelveCaso()
 {
-    int n = 0;
-    std::cin >> n;
-    if (! std::cin)
-        return false;
+	int n = 0;
+	std::cin >> n;
+	if (!std::cin)
+		return false;
 
-    Set<int> set1, set2;
-    int c = 0;
-    for (int i = 0; i < n; i++)
-    {
-    	std::cin >> c;
-	    set1.add(c);
-    }
-
-    std::cin >> n;
+	Set<int> set1, set2;
+	int c = 0;
 	for (int i = 0; i < n; i++)
-    {
-        std::cin >> c;
-	    set2.add(c);
-    }
+	{
+		std::cin >> c;
+		set1.add(c);
+	}
+
+	std::cin >> n;
+	for (int i = 0; i < n; i++)
+	{
+		std::cin >> c;
+		set2.add(c);
+	}
 
 	std::cout << (set1 - set2) << endl;
 

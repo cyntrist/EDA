@@ -22,9 +22,9 @@ bool elemento_situado(const vector<int>& v, int ini, int fin)
 	}
 
 	int mit = (ini + fin) / 2;
-	
+
 	if (v[mit] > mit) // si el elto a la mitad es mayor que el indice mitad, ningun elto a la derecha esta bien situado
-		return elemento_situado(v, ini,  mit); // busca a la izq
+		return elemento_situado(v, ini, mit); // busca a la izq
 	if (v[mit] < mit) // si el elto a la mitad es menor que el indice mitad, ningun elto a la izq esta bien situado
 		return elemento_situado(v, mit, fin); // busca a la der
 	return true;

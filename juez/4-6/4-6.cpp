@@ -23,7 +23,7 @@ Set<int> resolver(int n, std::vector<int> v)
 		else
 		{
 			if (v[i] < set.getMax() && v[i] != set.getMin() || v[i] < set.getMin())
-			{ 
+			{
 				set.removeMax(); // O(log m)
 				set.add(v[i]);
 			}
@@ -54,7 +54,7 @@ bool resuelveCaso()
 
 	Set<int> sol = resolver(n, v);
 
-	for (int i = 0; i < sol.size(); i++) 
+	for (int i = 0; i < sol.size(); i++)
 		cout << *(sol.toArray() + i) << " ";
 	cout << "\n";
 

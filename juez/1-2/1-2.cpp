@@ -10,55 +10,57 @@
 
 // función que resuelve el problema
 // O(n) siendo n el tamaño del vector, lo recorre una vez
-std::pair<int, int> resolver(std::vector<int> datos) {
-    std::pair<int, int> pair(0,0);
+std::pair<int, int> resolver(std::vector<int> datos)
+{
+	std::pair<int, int> pair(0, 0);
 
-    for (int i = 1; i < datos.size() - 1; i++)
-    {
-	    if (datos[i] > datos[i - 1] && datos[i] > datos[i + 1])
-            pair.first++;
-	    else if (datos[i] < datos[i - 1] && datos[i] < datos[i + 1])
+	for (int i = 1; i < datos.size() - 1; i++)
+	{
+		if (datos[i] > datos[i - 1] && datos[i] > datos[i + 1])
+			pair.first++;
+		else if (datos[i] < datos[i - 1] && datos[i] < datos[i + 1])
 			pair.second++;
-    }
+	}
 
-    return pair;
+	return pair;
 }
 
 // Resuelve un caso de prueba, leyendo de la entrada la
 // configuración, y escribiendo la respuesta
-void resuelveCaso() {
-    int n = 0;
-    std::cin >> n;
+void resuelveCaso()
+{
+	int n = 0;
+	std::cin >> n;
 
 	std::vector<int> datos(n);
-    for (int i = 0; i < n; i++)
-        std::cin >> datos[i];
-    
-    std::pair<int, int> sol = resolver(datos);
-    std::cout << sol.first << " " << sol.second << std::endl;
-    
+	for (int i = 0; i < n; i++)
+		std::cin >> datos[i];
+
+	std::pair<int, int> sol = resolver(datos);
+	std::cout << sol.first << " " << sol.second << std::endl;
 }
 
-int main() {
-    // Para la entrada por fichero.
-    // Comentar para acepta el reto
-    #ifndef DOMJUDGE
-     std::ifstream in("datos.txt");
-     auto cinbuf = std::cin.rdbuf(in.rdbuf()); //save old buf and redirect std::cin to casos.txt
-     #endif 
-    
-    
-    int numCasos;
-    std::cin >> numCasos;
-    for (int i = 0; i < numCasos; ++i)
-        resuelveCaso();
+int main()
+{
+	// Para la entrada por fichero.
+	// Comentar para acepta el reto
+#ifndef DOMJUDGE
+	std::ifstream in("datos.txt");
+	auto cinbuf = std::cin.rdbuf(in.rdbuf()); //save old buf and redirect std::cin to casos.txt
+#endif
 
-    
-    // Para restablecer entrada. Comentar para acepta el reto
-     #ifndef DOMJUDGE // para dejar todo como estaba al principio
-     std::cin.rdbuf(cinbuf);
-     system("PAUSE");
-     #endif
-    
-    return 0;
+
+	int numCasos;
+	std::cin >> numCasos;
+	for (int i = 0; i < numCasos; ++i)
+		resuelveCaso();
+
+
+	// Para restablecer entrada. Comentar para acepta el reto
+#ifndef DOMJUDGE // para dejar todo como estaba al principio
+	std::cin.rdbuf(cinbuf);
+	system("PAUSE");
+#endif
+
+	return 0;
 }

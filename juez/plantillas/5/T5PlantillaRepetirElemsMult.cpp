@@ -33,7 +33,7 @@ bool resuelveCaso() {
     cin >> n;    
     vector<int> mult(n);
     vector<int> aux(n); // Para darle la vuelta a la secuencia de entrada
-    
+
     // Leemos la secuencia invertida para q y le damos la vuelta
     for (int i = n-1; i >= 0; --i) cin >> aux[i];
     for (int e : aux) q.push(e);

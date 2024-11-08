@@ -6,8 +6,6 @@
 using namespace std;
 
 
-
-
 // Resuelve un caso de prueba, leyendo de la entrada la
 // configuración, y escribiendo la respuesta
 bool resuelveCaso() {

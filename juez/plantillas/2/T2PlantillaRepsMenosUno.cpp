@@ -19,7 +19,7 @@ void resuelveCaso() {
     cin >> n;
     vector<int> v(n);
     for (int& e : v) cin >> e;
-    
+
     // Llamada a la función resolver
 
     // Mostrar el resultado
