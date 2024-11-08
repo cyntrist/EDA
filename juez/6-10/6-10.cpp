@@ -6,6 +6,7 @@
 #include <fstream>
 #include "bintree_eda.h"
 using namespace std;
+using Par = std::pair<int,int>;
 
 template <class T>
 int nodos(const bintree<T>& tree)
