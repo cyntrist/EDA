@@ -20,12 +20,10 @@ Par regreso(const bintree<std::string>& tree)
 	// casos base
 	if (tree.empty()) return {"Ninguno", 0}; // vacio
 	if (tree.left().empty() && tree.right().empty())
-	{
 		// si es arbol de un solo nodo
 		//if (tree.root() == "Orcos") // ataque hoja no tiene mucho sentido esto pero bueno
 		//	return {"Ninguno", 0};
 		return {tree.root(), 1}; // si no lo es
-	}
 
 	// recursividad mitad mitad
 	const Par izq = regreso(tree.left());
@@ -60,7 +58,6 @@ Par regreso(const bintree<std::string>& tree)
 	if (tree.root() == "Orcos") // ataque!!!!
 		fieles /= 2;
 	return {lider, fieles};
-
 }
 
 // Resuelve un caso de prueba, leyendo de la entrada la
