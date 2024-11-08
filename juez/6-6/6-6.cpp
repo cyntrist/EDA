@@ -6,33 +6,21 @@
 #include <fstream>
 #include "bintree_eda.h"
 using namespace std;
-using Par = std::pair<bool, int>;
+using Par = std::pair<int, bool>;
 
-
-Par zurdo(const bintree<char>& arbol,  int &nelems)
+Par zurdo(const bintree<char>& arbol)
 {
 	if (arbol.empty())
-		return {true, 0};
+		return {0, true};
 	if (arbol.left().empty() && arbol.right().empty())
-		return {true, 1};
-	if (arbol.left().empty())
-	{
-		int nelemsright;
-		return {false, zurdo(arbol.right(), nelemsright).second + 1};
-	}
+		return {1, true};
 
-	if (arbol.right().empty())
-	{
-		int nelemsleft;
-		Par izq = zurdo(arbol.left(), nelemsleft);
-		return { izq.first, izq.second + 1} ;
-	}
+	Par iz = zurdo(arbol.left());
+	Par der = zurdo(arbol.right());
 
-	int nelemsleft, nelemsright;
-	Par der = zurdo(arbol.right(), nelemsright);
-	Par izq = zurdo(arbol.left(), nelemsleft);
-
-	return {(der.first && izq.first && izq.second > (nelems - 1) / 2), der.second + izq.second + 1};
+	if (iz.second && der.second && iz.first > der.first)
+		return {iz.first + der.first + 1, true};
+	return {iz.first + der.first + 1, false};
 }
 
 // Resuelve un caso de prueba, leyendo de la entrada la
@@ -42,9 +30,8 @@ void resuelveCaso()
 	// leer los datos de la entrada
 	bintree<char> tree;
 	tree = leerArbol('.');
-	int nelems;
-	Par sol = zurdo(tree, nelems);
-	cout << (sol.first ? "SI" : "NO") << endl;
+	Par sol = zurdo(tree);
+	cout << (sol.second ? "SI" : "NO") << endl;
 }
 
 int main()
