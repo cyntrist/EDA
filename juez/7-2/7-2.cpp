@@ -1,5 +1,5 @@
-// Nombre del alumno ..... Cynthia Tristán
-// Usuario del Juez ...... EDA-GDV73 
+// Nombre del alumno ..... Cynthia Tristán y Carmen Gómez
+// Usuario del Juez ...... EDA-GDV73 y EDA-GB27
 
 #include <iostream>
 #include <fstream>
