@@ -202,6 +202,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "7", "7", "{22510D5A-B319-41
 		..\plantillas\7\T7PlantillaEligiendoDeporte.cpp = ..\plantillas\7\T7PlantillaEligiendoDeporte.cpp
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "7-5", "..\7-5\7-5.vcxproj", "{B428AA6F-5C5D-4605-A8A7-1A3125F8C55D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -682,6 +684,14 @@ Global
 		{ABB7ABAD-F349-4330-B24B-7FC9DF2112A6}.Release|x64.Build.0 = Release|x64
 		{ABB7ABAD-F349-4330-B24B-7FC9DF2112A6}.Release|x86.ActiveCfg = Release|Win32
 		{ABB7ABAD-F349-4330-B24B-7FC9DF2112A6}.Release|x86.Build.0 = Release|Win32
+		{B428AA6F-5C5D-4605-A8A7-1A3125F8C55D}.Debug|x64.ActiveCfg = Debug|x64
+		{B428AA6F-5C5D-4605-A8A7-1A3125F8C55D}.Debug|x64.Build.0 = Debug|x64
+		{B428AA6F-5C5D-4605-A8A7-1A3125F8C55D}.Debug|x86.ActiveCfg = Debug|Win32
+		{B428AA6F-5C5D-4605-A8A7-1A3125F8C55D}.Debug|x86.Build.0 = Debug|Win32
+		{B428AA6F-5C5D-4605-A8A7-1A3125F8C55D}.Release|x64.ActiveCfg = Release|x64
+		{B428AA6F-5C5D-4605-A8A7-1A3125F8C55D}.Release|x64.Build.0 = Release|x64
+		{B428AA6F-5C5D-4605-A8A7-1A3125F8C55D}.Release|x86.ActiveCfg = Release|Win32
+		{B428AA6F-5C5D-4605-A8A7-1A3125F8C55D}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -750,6 +760,7 @@ Global
 		{A0FF179E-7AE0-4FDE-9E70-6A8FC6627F97} = {75984CF0-8FA1-4CF7-B359-B06C6407EA9D}
 		{ABB7ABAD-F349-4330-B24B-7FC9DF2112A6} = {75984CF0-8FA1-4CF7-B359-B06C6407EA9D}
 		{22510D5A-B319-4183-A8CA-6671DADD35C0} = {D2FE0EB7-4744-4A1C-A321-0DD23E66E4B7}
+		{B428AA6F-5C5D-4605-A8A7-1A3125F8C55D} = {75984CF0-8FA1-4CF7-B359-B06C6407EA9D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {71926007-8EB4-4B4D-A783-AA5272928E85}
