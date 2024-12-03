@@ -8,7 +8,7 @@ using namespace std;
 
 void resolver(string const& primerDeporte, ...){
     string deporte, alumno;
-    deporte = primerdeporte;
+    deporte = primerDeporte;
     while (deporte != "_FIN_") {
         ...
         cin >> alumno;
