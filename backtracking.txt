@@ -1,0 +1,122 @@
+const int NUM_DIRS = 4;
+const array<Point2D, NUMD_DIRS> dirs = {{1,0},{0,1},{-1,0},{0,-1}}
+
+
+k = nivel del arbol
+void laberinto(vector<Point2D>& soluc, int n, int k, Mapa const& muros, Mapa& visitadas) 
+for (int dir = 0; dir < num_dirs; ++dir) {
+	Point2D pos = soluc[k-1] + DIRS[dir];
+	soluc[k] = pos;
+	if (esValida(pos, muros, visitadas) {
+		if (pos.x == n-1 && pos.y == n-1) {
+			print
+		}
+		else {
+			marcar 
+			visitadas[pos.y][pos.x] = true;
+			laberinto = (soluc, n, k+1, muros, visitadas)
+			visitadas[pos.y][pos.x] = false;
+			descmarcar
+		}
+	}
+}
+
+variantes: 2
+
+variatnes para encontrar la 1ª soluciono (muy sencillo dice el cabron)
+
+k = nivel del arbol
+void laberinto(vector<Point2D>& soluc, int n, int k, Mapa const& muros, Mapa& visitadas, bool& fin) 
+for (int dir = 0; dir < num_dirs && !fin; ++dir) {
+	Point2D pos = soluc[k-1] + DIRS[dir];
+	soluc[k] = pos;
+	if (esValida(pos, muros, visitadas) {
+		if (pos.x == n-1 && pos.y == n-1) {
+			print
+			fin = true;
+		}
+		else {
+			marcar 
+			visitadas[pos.y][pos.x] = true;
+			laberinto = (soluc, n, k+1, muros, visitadas)
+			visitadas[pos.y][pos.x] = false;
+			descmarcar
+		}
+	}
+}
+
+un bool y punto lo metes en el for y ya 
+
+
+
+
+bool esValida(Point2D const& pos, Mapa const& muros, Mapa& visitadas) {
+	return (pos.x >= 0&& pos.x < muros.size() && pos.y >= 0 && pos.y < muros.size() && !muros[pos.y][pos.x] && !visitadas[pos.y][pos.x]);
+}
+
+
+
+
+
+main
+	Mapa muros(n,vector<bool>(n))
+for int i i<n ++i
+for int j j< n ++j
+int muro; cin >> muro; muros[i][j] = muro;
+
+Mapa visitadas(n,vector<bool>(n,false));
+vector<Point2D soluc(n*n)
+....
+...
+
+...
+
+
+
+
+
+
+variante solución más corta!!!
+estilo consulta máximos de un vector, mirando si es mejor que el actual
+
+k = nivel del arbol
+void laberinto(vector<Point2D>& soluc, int n, int k, Mapa const& muros, Mapa& visitadas
+int&  mejorLong, vector<Point2D>& mejorSol)
+) 
+if (k > mejorLong)
+	return;
+
+for (int dir = 0; dir < num_dirs; ++dir) {
+	Point2D pos = soluc[k-1] + DIRS[dir];
+	soluc[k] = pos;
+	if (esValida(pos, muros, visitadas) {
+		if (pos.x == n-1 && pos.y == n-1) {
+			if (k < mejorLong) // k es la profundidad que coincide con los pasos que has dado en este caso es el número de casillas -1 
+				mejorLong = k; copiar(soluc, mejorSol)
+		}
+		else {
+			marcar 
+			visitadas[pos.y][pos.x] = true;
+			laberinto = (soluc, n, k+1, muros, visitadas)
+			visitadas[pos.y][pos.x] = false;
+			descmarcar
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

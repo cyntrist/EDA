@@ -17,26 +17,23 @@ using Villano = string;
 
 class SistemaBatallas
 {
-private:
-	struct infoVillano
+	struct InfoHeroe
 	{
+		list<pair<string, int>>::iterator it;
+		int vida = 0;
+		map<string, int> ataques;
+	};
+
+	struct InfoVillano
+	{
+		list<pair<string, int>>::iterator it;
 		int vida = 0;
 		int damg = 0;
-		list<pair<string, int>>::iterator it; // puntero a la lista de turnos
 	};
 
-	unordered_map<Villano, infoVillano> villanos; // mapa no ordenado con la informacion de todos los villanos
-
-	struct infoHeroe
-	{
-		int vida = 0;
-		map<string, int> ataques; // <nombre ataque, daño ataque>
-		// mapa ordenado para que mostrar_ataques no tenga que hacer sort cada vez que es llamado
-		list<pair<string, int>>::iterator it; // puntero a la lista de turnos
-	};
-
-	unordered_map<Heroe, infoHeroe> heroes; // mapa no ordenado con la informacion de todos los heroes
-	list<pair<string, int>> turnos; // cola para saber el orden de los turnos
+	unordered_map<Heroe, InfoHeroe> heroes;
+	unordered_map<Villano, InfoVillano> villanos;
+	list<pair<string, int>> turnos;
 
 public:
 	// O(1) 
@@ -60,36 +57,36 @@ public:
 		heroes[h].it = --turnos.end();
 	}
 
-	// O(log n) por find
+	// O(log n) siendo n el tamano de heroes
 	void aprende_ataque(const Heroe& h, const string& ataque, int valor)
 	{
 		if (heroes.find(h) == heroes.end()) // O(1)
 			throw invalid_argument("Heroe inexistente");
 
-		auto& atqH = heroes[h].ataques; // mapa ordenado de ataques del heroe
+		auto& atqH = heroes[h].ataques;
 		if (atqH.find(ataque) != atqH.end()) // log(n)
 			throw invalid_argument("Ataque repetido");
 
 		atqH[ataque] = valor;
 	}
 
-	// O(n) siendo n el numero de ataques registrados para el heroe h
+	// O(n) siendo n el numero de ataques para el heroe h
 	vector<pair<string, int>> mostrar_ataques(const Heroe& h)
 	{
 		if (heroes.find(h) == heroes.end()) // O(1)
 			throw invalid_argument("Heroe inexistente");
 
 		vector<pair<string, int>> res;
-		auto ataquesH = heroes[h].ataques; // mapa ordenado
+		auto ataquesH = heroes[h].ataques;
 
-		for (auto& atqH : ataquesH) // recorrer mapa ordenado
-			res.emplace_back(atqH.first, atqH.second); // insertar en vector
+		for (auto& atqH : ataquesH)
+			res.emplace_back(atqH.first, atqH.second);
 
 		return res;
 	}
 
-	// O(n) siendo n los elementos de la lista turnos
-	vector<pair<string, int>> mostrar_turnos()
+	// O(n) siendo n  el num de elementos de la lista turnos
+	vector<pair<string, int>> mostrar_turnos() const
 	{
 		vector<pair<string, int>> res;
 		for (auto it : turnos)
@@ -98,32 +95,30 @@ public:
 	}
 
 	// O(1)
-	// con el uso de iteradores nos ahorramos bucles de busqueda
 	bool villano_ataca(const Villano& v, const Heroe& h)
 	{
-		const auto villano = villanos.find(v); // O(1)
+		const auto villano = villanos.find(v);
 		if (villano == villanos.end())
 			throw invalid_argument("Villano inexistente");
 
-		const auto heroe = heroes.find(h); // O(1)
+		const auto heroe = heroes.find(h);
 		if (heroe == heroes.end())
 			throw invalid_argument("Heroe inexistente");
 
 		if (v != turnos.front().first)
-			// si el nombre del villano no es el primero de la lista de turnos, no es su turno
 			throw invalid_argument("No es su turno");
 
 		turnos.pop_front();
-		heroe->second.vida -= villano->second.damg; // el heroe h pierde vida segun el daño del villano
-		heroe->second.it->second = heroe->second.vida; // se actualiza la vida tambien en la lista de turnos
+		heroe->second.vida -= villano->second.damg;
+		heroe->second.it->second = heroe->second.vida;
 
-		turnos.emplace_back(v, villano->second.vida); // pide turno de nuevo
+		turnos.emplace_back(v, villano->second.vida);
 		villano->second.it = --turnos.end();
 
 		if (heroe->second.vida <= 0)
 		{
 			turnos.erase(heroe->second.it);
-			heroes.erase(heroe); // teniendo el iterador ya al heroe, coste constante
+			heroes.erase(heroe);
 			return true;
 		}
 
@@ -133,33 +128,32 @@ public:
 	//  O(log n) siendo n el numero de ataques del heroe h
 	bool heroe_ataca(const Heroe& h, const string& ataque, const Villano& v)
 	{
-		const auto villano = villanos.find(v); // O(1)
+		const auto villano = villanos.find(v);
 		if (villano == villanos.end())
 			throw invalid_argument("Villano inexistente");
 
-		const auto heroe = heroes.find(h); // O(1)
+		const auto heroe = heroes.find(h);
 		if (heroe == heroes.end())
 			throw invalid_argument("Heroe inexistente");
 
-		if (h != turnos.front().first) // si el nombre del heroe no es el primero de la lista de turnos, no es su turno
+		if (h != turnos.front().first)
 			throw invalid_argument("No es su turno");
 
 		const auto ataqueHeroe = heroe->second.ataques.find(ataque);
-		if (ataqueHeroe == heroe->second.ataques.end()) // si no tiene el ataque aprendido O(log n) porque es ordenado
+		if (ataqueHeroe == heroe->second.ataques.end())
 			throw invalid_argument("Ataque no aprendido");
 
 		turnos.pop_front();
-		villano->second.vida -= ataqueHeroe->second; // el villano v pierde vida segun el daño del ataque ataqueHeroe
-		villano->second.it->second = villano->second.vida; // se actualiza la vida en la lista de turnos
+		villano->second.vida -= ataqueHeroe->second;
+		villano->second.it->second = villano->second.vida;
 
-		turnos.emplace_back(h, heroe->second.vida); // pide turno de nuevo
+		turnos.emplace_back(h, heroe->second.vida);
 		heroe->second.it = --turnos.end();
 
 		if (villano->second.vida <= 0)
 		{
-			// si el villano es completamente derrotado se elimina de la batalla
-			turnos.erase(villano->second.it); // se elimina de la lista de turnos
-			villanos.erase(villano); // se elimina del diccionario de villanos / teniendo el iterador, coste constante
+			turnos.erase(villano->second.it);
+			villanos.erase(villano);
 			return true;
 		}
 
@@ -167,7 +161,7 @@ public:
 	}
 };
 
-bool resuelveCaso()
+bool resuelveCaso() // No tacar nada de esta función!
 {
 	string comando;
 	cin >> comando;
@@ -203,31 +197,33 @@ bool resuelveCaso()
 				cin >> h;
 				auto ataques = sistema.mostrar_ataques(h);
 				cout << "Ataques de " << h << endl;
-				for (auto& [ataque, valor] : ataques)
+				for (auto& [ataque,valor] : ataques)
+				{
 					cout << ataque << " " << valor << "\n";
+				}
 			}
 			else if (comando == "mostrar_turnos")
 			{
 				cout << "Turno: " << endl;
 				auto turnos = sistema.mostrar_turnos();
 				for (auto& [pers, puntos] : turnos)
+				{
 					cout << pers << " " << puntos << "\n";
+				}
 			}
 			else if (comando == "villano_ataca")
 			{
 				cin >> v >> h;
 				bool derrotado = sistema.villano_ataca(v, h);
 				cout << v << " ataca a " << h << endl;
-				if (derrotado)
-					cout << h << " derrotado" << endl;
+				if (derrotado) cout << h << " derrotado" << endl;
 			}
 			else if (comando == "heroe_ataca")
 			{
 				cin >> h >> ataque >> v;
 				bool derrotado = sistema.heroe_ataca(h, ataque, v);
 				cout << h << " ataca a " << v << endl;
-				if (derrotado)
-					cout << v << " derrotado" << endl;
+				if (derrotado) cout << v << " derrotado" << endl;
 			}
 		}
 		catch (std::exception& e)
