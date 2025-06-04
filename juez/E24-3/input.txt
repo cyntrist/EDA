@@ -24,11 +24,11 @@ mostrar_ataques h2
 villano_ataca v1 v2
 heroe_ataca h1 a1 h2
 villano_ataca v1 h1
-heroe_ataca h1 a1 v1
+heroe_ataca h1 a1 v1 
 aparece_heroe h1 10
-heroe_ataca h1 a1 v1
+heroe_ataca h1 a1 v1 
 villano_ataca v1 h1
-heroe_ataca h1 a1 v1
+heroe_ataca h1 a1 v1 
 aprende_ataque h1 a1 30
 heroe_ataca h1 a1 v1
 aparece_villano v1 5 4

@@ -18,8 +18,5 @@
     <ClCompile Include="E24-3.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="T8PlantillaJuegoBatallas.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
   </ItemGroup>
 </Project>
