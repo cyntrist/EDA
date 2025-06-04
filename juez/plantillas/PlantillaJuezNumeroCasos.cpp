@@ -1,7 +1,6 @@
 // Nombre del alumno ..... Cynthia Tristán
 // Usuario del Juez ...... EDA-GDV73 
 
-
 #include <iostream>
 #include <iomanip>
 #include <fstream>

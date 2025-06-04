@@ -293,6 +293,16 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "E25-3", "..\E25-3\E25-3.vcx
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Temario", "Temario", "{3E4C0B59-2A92-4DCA-A8B2-AA59DBE1D869}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TADs", "TADs", "{DA54A79E-9BE2-4DE1-B5E3-F7ADB5E1899D}"
+	ProjectSection(SolutionItems) = preProject
+		..\tads\deque_eda.h = ..\tads\deque_eda.h
+		..\tads\LinkedListStack.h = ..\tads\LinkedListStack.h
+		..\tads\list_eda.h = ..\tads\list_eda.h
+		..\tads\queue_eda.h = ..\tads\queue_eda.h
+		..\tads\stack_eda.h = ..\tads\stack_eda.h
+		..\tads\vector_eda.h = ..\tads\vector_eda.h
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
