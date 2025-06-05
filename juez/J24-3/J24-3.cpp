@@ -2,7 +2,6 @@
 #include <stdexcept>
 #include <fstream>
 #include <vector>
-#include <cassert>
 #include <list>
 #include <map>
 #include <unordered_map>
@@ -27,9 +26,9 @@ protected:
     lista graves;
     lista medias;
     lista leves;
-	listas listas = {leves, medias, graves};
-    registro registro;
-    curados curados;
+	listas listados = {leves, medias, graves};
+    registro reg;
+    curados sanos;
 
 public:
     // registra a un nuevo paciente (un string), que ya ha sido preevaluado por un médico
@@ -39,13 +38,13 @@ public:
     // Si la gravedad dada no es un número entre 1 ￿y 3, se lanzará una excepción domain_error con el mensaje Gravedad incorrecta.
     // coste:
     void nuevo_paciente(paciente p, gravedad g) {
-        auto search = registro.find(p);
-        if (search != registro.end())
+        auto search = reg.find(p);
+        if (search != reg.end())
             throw domain_error("Paciente repetido");
         if (g < 1 || g > 3)
             throw domain_error("Gravedad incorrecta");
 
-        //listas[g - 1].emplace_back(p, g);
+        //listados[g - 1].emplace_back(p, g);
 
         switch (g)
         {
@@ -54,15 +53,15 @@ public:
         case 3: graves.emplace_back(p, g); break;
         }
 
-        registro[p] = g;
+        reg[p] = g;
     }
 
     // devuelve el entero que representa la gravedad actual de paciente.
     // Si el paciente no está en la sala de espera, se lanzará una excepción domain_error con mensaje Paciente inexistente.
     // coste:
     int gravedad_actual(paciente p) const {
-        auto search = registro.find(p);
-        if (search == registro.end())
+        auto search = reg.find(p);
+        if (search == reg.end())
             throw domain_error("Paciente inexistente");
 
         return search->second;
@@ -76,9 +75,27 @@ public:
     // Si no hay pacientes se lanzará una excepción domain_error con mensaje No hay pacientes.
     // coste:
     paciente siguiente() {
-        if (!graves.empty()) return graves.front().first;
-        if (!medias.empty()) return medias.front().first;
-        if (!leves.empty()) return leves.front().first;
+        if (!graves.empty()) 
+        {
+            auto first = graves.front().first;
+            graves.pop_front();
+            reg.erase(first);
+            return first;
+        }
+        if (!medias.empty()) 
+        {
+            auto first = medias.front().first;
+            medias.pop_front();
+            reg.erase(first);
+            return first;
+        }
+        if (!leves.empty())
+        {
+            auto first = leves.front().first;
+            leves.pop_front();
+            reg.erase(first);
+            return first;
+        }
     	throw domain_error("No hay pacientes");
     }
 
@@ -89,8 +106,8 @@ public:
     // Si el paciente no existe, se lanzará una excepción domain_error con mensaje Paciente inexistente.
     // coste:
     void mejora(paciente p) {
-        auto search = registro.find(p);
-        if (search == registro.end())
+        auto search = reg.find(p);
+        if (search == reg.end())
             throw domain_error("Paciente inexistente");
 
         //paciente p = search->first;
@@ -105,9 +122,8 @@ public:
                 if (i != leves.end())
                 {
 		            leves.erase(i);
-		            registro.erase(p);
-	                curados[p] = g;
-                    /// falta actualizar map?
+		            reg.erase(p);
+	                sanos[p] = g;
                 }
 	        }
             break;
@@ -120,7 +136,7 @@ public:
                 {
 		            leves.push_front(*i);
 	                medias.erase(i);
-                    /// falta actualizar map?
+                    reg[p] = g - 1;
                 }
 	        }
             break;
@@ -133,7 +149,7 @@ public:
                 {
 	                medias.push_front(*i);
 	                graves.erase(i);
-                    /// falta actualizar map?
+                    reg[p] = g - 1;
                 }
 	        }
             break;
@@ -147,10 +163,10 @@ public:
     list<paciente> recuperados() const {
         list<paciente> res;
 
-        auto it = curados.begin();
-        while (it != curados.end())
+        auto it = sanos.begin();
+        while (it != sanos.end())
         {
-            res.emplace_back(it->first, it->second);
+            res.emplace_back( it->first );
             ++it;
         }
 
