@@ -36,10 +36,11 @@ struct Entidad
 {
 	Nombre nombre;
 	Vida vida;
-	Vivo vivo = true;
+	Vivo vivo = true;  // fuera
+	// iterador a su turno
 };
 
-struct Heroe : Entidad
+struct Heroe : Entidad 
 {
 	Ataques ataques;
 };
@@ -49,9 +50,9 @@ struct Villano : Entidad
 	Dano dano;
 };
 
-using Heroes = map<string, Heroe>;
-using Villanos = map<string, Villano>;
-using Turnos = queue<Entidad>;
+using Heroes = map<Nombre, Heroe>; // unordered map
+using Villanos = map<Nombre, Villano>; // unordered map 
+using Turnos = queue<Entidad>; // lista de Nombres !!!
 
 class SistemaBatallas
 {
