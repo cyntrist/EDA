@@ -303,6 +303,27 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TADs", "TADs", "{DA54A79E-9
 		..\tads\vector_eda.h = ..\tads\vector_eda.h
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Junio 2024", "Junio 2024", "{1B9B1538-1E84-42DB-84D8-06646915C827}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "J24-1", "..\J24-1\J24-1.vcxproj", "{6A98E122-6920-4160-B98C-F060993C156A}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "J24-2", "..\J24-2\J24-2.vcxproj", "{5F69E47F-F098-448F-B015-66AB21419895}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "J24-3", "..\J24-3\J24-3.vcxproj", "{1BD25731-5A1F-41CA-81DF-7B78840D4B56}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "8", "8", "{0ACF5D71-35ED-4A40-85C1-AF15804D6984}"
+	ProjectSection(SolutionItems) = preProject
+		..\plantillas\8\MainAutoescuela.cpp = ..\plantillas\8\MainAutoescuela.cpp
+		..\plantillas\8\MainCarnetPuntos2.cpp = ..\plantillas\8\MainCarnetPuntos2.cpp
+		..\plantillas\8\MainConsultorioMedico.cpp = ..\plantillas\8\MainConsultorioMedico.cpp
+		..\plantillas\8\MainElecciones.cpp = ..\plantillas\8\MainElecciones.cpp
+		..\plantillas\8\MainVentaLibros.cpp = ..\plantillas\8\MainVentaLibros.cpp
+		..\plantillas\8\Main_iPud.cpp = ..\plantillas\8\Main_iPud.cpp
+		..\plantillas\8\T8PlantillaGestionTienda.cpp = ..\plantillas\8\T8PlantillaGestionTienda.cpp
+		..\plantillas\8\T8PlantillaJuegoBatallas.cpp = ..\plantillas\8\T8PlantillaJuegoBatallas.cpp
+		..\plantillas\8\T8PlantillaSalaUrgencias.cpp = ..\plantillas\8\T8PlantillaSalaUrgencias.cpp
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -1055,6 +1076,30 @@ Global
 		{A78267B8-1A3D-4C6E-AD20-E9B3AB9F43F6}.Release|x64.Build.0 = Release|x64
 		{A78267B8-1A3D-4C6E-AD20-E9B3AB9F43F6}.Release|x86.ActiveCfg = Release|Win32
 		{A78267B8-1A3D-4C6E-AD20-E9B3AB9F43F6}.Release|x86.Build.0 = Release|Win32
+		{6A98E122-6920-4160-B98C-F060993C156A}.Debug|x64.ActiveCfg = Debug|x64
+		{6A98E122-6920-4160-B98C-F060993C156A}.Debug|x64.Build.0 = Debug|x64
+		{6A98E122-6920-4160-B98C-F060993C156A}.Debug|x86.ActiveCfg = Debug|Win32
+		{6A98E122-6920-4160-B98C-F060993C156A}.Debug|x86.Build.0 = Debug|Win32
+		{6A98E122-6920-4160-B98C-F060993C156A}.Release|x64.ActiveCfg = Release|x64
+		{6A98E122-6920-4160-B98C-F060993C156A}.Release|x64.Build.0 = Release|x64
+		{6A98E122-6920-4160-B98C-F060993C156A}.Release|x86.ActiveCfg = Release|Win32
+		{6A98E122-6920-4160-B98C-F060993C156A}.Release|x86.Build.0 = Release|Win32
+		{5F69E47F-F098-448F-B015-66AB21419895}.Debug|x64.ActiveCfg = Debug|x64
+		{5F69E47F-F098-448F-B015-66AB21419895}.Debug|x64.Build.0 = Debug|x64
+		{5F69E47F-F098-448F-B015-66AB21419895}.Debug|x86.ActiveCfg = Debug|Win32
+		{5F69E47F-F098-448F-B015-66AB21419895}.Debug|x86.Build.0 = Debug|Win32
+		{5F69E47F-F098-448F-B015-66AB21419895}.Release|x64.ActiveCfg = Release|x64
+		{5F69E47F-F098-448F-B015-66AB21419895}.Release|x64.Build.0 = Release|x64
+		{5F69E47F-F098-448F-B015-66AB21419895}.Release|x86.ActiveCfg = Release|Win32
+		{5F69E47F-F098-448F-B015-66AB21419895}.Release|x86.Build.0 = Release|Win32
+		{1BD25731-5A1F-41CA-81DF-7B78840D4B56}.Debug|x64.ActiveCfg = Debug|x64
+		{1BD25731-5A1F-41CA-81DF-7B78840D4B56}.Debug|x64.Build.0 = Debug|x64
+		{1BD25731-5A1F-41CA-81DF-7B78840D4B56}.Debug|x86.ActiveCfg = Debug|Win32
+		{1BD25731-5A1F-41CA-81DF-7B78840D4B56}.Debug|x86.Build.0 = Debug|Win32
+		{1BD25731-5A1F-41CA-81DF-7B78840D4B56}.Release|x64.ActiveCfg = Release|x64
+		{1BD25731-5A1F-41CA-81DF-7B78840D4B56}.Release|x64.Build.0 = Release|x64
+		{1BD25731-5A1F-41CA-81DF-7B78840D4B56}.Release|x86.ActiveCfg = Release|Win32
+		{1BD25731-5A1F-41CA-81DF-7B78840D4B56}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1169,6 +1214,11 @@ Global
 		{5040DA30-0D23-452F-A219-63286A798F06} = {8B92B91A-8A23-4E0A-A127-09F34686E7EE}
 		{09B33B22-B839-4044-896C-A36597091F74} = {8B92B91A-8A23-4E0A-A127-09F34686E7EE}
 		{A78267B8-1A3D-4C6E-AD20-E9B3AB9F43F6} = {8B92B91A-8A23-4E0A-A127-09F34686E7EE}
+		{1B9B1538-1E84-42DB-84D8-06646915C827} = {4A181E74-DDB5-43B1-A139-23C727CB0703}
+		{6A98E122-6920-4160-B98C-F060993C156A} = {1B9B1538-1E84-42DB-84D8-06646915C827}
+		{5F69E47F-F098-448F-B015-66AB21419895} = {1B9B1538-1E84-42DB-84D8-06646915C827}
+		{1BD25731-5A1F-41CA-81DF-7B78840D4B56} = {1B9B1538-1E84-42DB-84D8-06646915C827}
+		{0ACF5D71-35ED-4A40-85C1-AF15804D6984} = {D2FE0EB7-4744-4A1C-A321-0DD23E66E4B7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {71926007-8EB4-4B4D-A783-AA5272928E85}

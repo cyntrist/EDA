@@ -49,8 +49,8 @@ struct Villano : Entidad
 	Dano dano;
 };
 
-using Heroes = std::map<string, Heroe>;
-using Villanos = std::map<string, Villano>;
+using Heroes = map<string, Heroe>;
+using Villanos = map<string, Villano>;
 using Turnos = queue<Entidad>;
 
 class SistemaBatallas
@@ -102,9 +102,6 @@ public:
 		heroe.vida = puntos;
 
 		heroes[h] = heroe;
-		//if (heroes.count(h) > 0)
-		//	heroes.erase(h);
-		//heroes.insert({h, heroe});
 		turnos.push(heroe);
 	}
 
@@ -155,7 +152,8 @@ public:
 		Turnos aux = turnos;
 		size_t size = aux.size();
 
-		//res.reserve(entidades);
+		res.reserve(entidades);
+
 		for (int i = 0; i < size; i++)
 		{
 			auto villSearch = villanos.find(aux.front().nombre);
