@@ -107,6 +107,7 @@ public:
 		            leves.erase(i);
 		            registro.erase(p);
 	                curados[p] = g;
+                    /// falta actualizar map?
                 }
 	        }
             break;
@@ -119,6 +120,7 @@ public:
                 {
 		            leves.push_front(*i);
 	                medias.erase(i);
+                    /// falta actualizar map?
                 }
 	        }
             break;
@@ -131,6 +133,7 @@ public:
                 {
 	                medias.push_front(*i);
 	                graves.erase(i);
+                    /// falta actualizar map?
                 }
 	        }
             break;
