@@ -45,16 +45,15 @@ void resolver(std::vector<int>& soluc, int k, int n, const int m, int suma, bool
 	for (int i = 0; i < 2; i++) // candidatos
 	{
 		soluc[k] = i; // lo que voy a probar ahora
-		// asumo que es mi solucion, marcamos
 		// marcar
 		if (i == 0) suma += v[k];
 		else suma -= v[k];
 
 		if ((k == 0 && i == 0) || k != 0) // es valida
 		{
-			if (k >= n - 1)
+			if (k >= n - 1) // es solucion
 			{
-				if (suma == m)
+				if (suma == m) 
 					r = true;
 				return;
 			}

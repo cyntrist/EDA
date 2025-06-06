@@ -280,6 +280,11 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examenes", "Examenes", "{4A181E74-DDB5-43B1-A139-23C727CB0703}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Enero 2025", "Enero 2025", "{8B92B91A-8A23-4E0A-A127-09F34686E7EE}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\examenes\ExamenEnero25\ejerc1.cpp = ..\..\examenes\ExamenEnero25\ejerc1.cpp
+		..\..\examenes\ExamenEnero25\ejerc2.cpp = ..\..\examenes\ExamenEnero25\ejerc2.cpp
+		..\..\examenes\ExamenEnero25\ejerc3.cpp = ..\..\examenes\ExamenEnero25\ejerc3.cpp
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "E24-1", "..\E24-1\E24-1.vcxproj", "{FBC5B62C-90F2-4F43-A9E0-01128CE5CECE}"
 EndProject
