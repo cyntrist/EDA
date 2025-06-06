@@ -83,16 +83,12 @@ void resolver(std::vector<int>& soluc, int k, int n, const int m, int suma, bool
 void resuelveCaso()
 {
 	int n = 0,
-	    m = 0,
-	    w = 0;
+		m = 0;
 	std::cin >> m >> n;
 	std::vector<int> v(n);
 
 	for (int i = 0; i < n; i++)
-	{
-		std::cin >> w;
-		v[i] = w;
-	}
+		std::cin >> v[i];
 
 	bool resuelto = false;
 	std::vector<int> soluc(n);
