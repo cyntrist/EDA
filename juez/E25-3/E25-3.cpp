@@ -31,73 +31,72 @@ public:
     ///  Si el equipo no estaba dado de alta, se le da de alta en ese momento.
     ///  Si el jugador ya estaba dado de alta, la operación supone un cambio de equipo, pasando a estar ￿fichado por el nuevo equipo.
     ///  Si el jugador ya estaba fi￿chado por este equipo, la operación no tiene ningún efecto.
-    // Coste: 
+    // Coste: O(n + m + e + f) siendo el tamano de jugadores, m el de equipos,
+    // e el de la lista de equipos de cada jugador y f el de la lista de jugadores de cada equipo
     void fichar(const Jugador& jugador, const Equipo& equipo) {
-        auto itJu = jugadores.find(jugador);
+        auto itJu = jugadores.find(jugador); // O(n)
         bool juEncontrado = false;
         Equipo antiguoEquipo;
-        if (itJu == jugadores.end()) // si no estaba en un equipo antes aka no estaba registrado
+        if (itJu == jugadores.end()) // O(k) si no estaba en un equipo antes aka no estaba registrado
         {
             ListaEquipos l = { equipo };
-            jugadores.insert({ jugador, l }); // insertar en el mapa
+            jugadores.insert({ jugador, l }); // O(n) insertar en el mapa
         }
         else // si tiene algun equipo antes buscamos si ha sido fichado por este antes
         {
             juEncontrado = true;
-            antiguoEquipo = *itJu->second.begin();
-            auto itEq = itJu->second.begin();
-            while (itEq != itJu->second.end() && *itEq != equipo) ++itEq;
+            antiguoEquipo = *itJu->second.begin(); // O(k)
+            auto itEq = itJu->second.begin(); // O(k)
+            while (itEq != itJu->second.end() && *itEq != equipo) // O(e) 
+                ++itEq;
 
             if (itEq != itJu->second.end() && itEq != itJu->second.begin()) // has encontrado al equipo y no es el actual
             {
-                itJu->second.push_front(*itEq);
-                itJu->second.erase(itEq);
+                itJu->second.push_front(*itEq); // O(k)
+                itJu->second.erase(itEq); // O(e)
             }
-            else itJu->second.push_front(equipo);
+            else itJu->second.push_front(equipo); // O(k)
         }
 
 
 
 
 
-        auto itEq = equipos.find(equipo);
-        if (itEq == equipos.end()) // si no existe el equipo
+        auto itEq = equipos.find(equipo); // O(m)
+        if (itEq == equipos.end()) //O(k) si no existe el equipo
         {
 	        if (juEncontrado)
 	        {
-                auto itAntiguoEquipo = equipos.find(antiguoEquipo);
+                auto itAntiguoEquipo = equipos.find(antiguoEquipo); // O(m)
 
-                auto it = itAntiguoEquipo->second.begin();
-                while (it != itAntiguoEquipo->second.end() && *it != jugador)
+                auto it = itAntiguoEquipo->second.begin(); // O(k)
+                while (it != itAntiguoEquipo->second.end() && *it != jugador) // O(f)
                     ++it;
 
-                if (it != itAntiguoEquipo->second.end())
-                    itAntiguoEquipo->second.erase(it);
+                if (it != itAntiguoEquipo->second.end()) // O(k)
+                    itAntiguoEquipo->second.erase(it); // O(f)
 	        }
 			ListaJugadores l = { jugador }; 
-            equipos.insert({ equipo, l }); // se da de alta con este unico jugador
+            equipos.insert({ equipo, l }); // O(m) se da de alta con este unico jugador
         }
         else // si si existe el equipo instertamos el jugador si no existe a en su lista de jugadores
         {
-            auto j2 = itEq->second.begin(); // buscamos al jugador en el equipo
-            while (j2 != itEq->second.end() && *j2 != jugador) 
+            auto j2 = itEq->second.begin(); // O(k) buscamos al jugador en el equipo
+            while (j2 != itEq->second.end() && *j2 != jugador) // O(f)
                 ++j2;
 
-            if (j2 != itEq->second.end() && j2 != itEq->second.begin()) // has encontrado al jugador 
+            if (j2 != itEq->second.end() && j2 != itEq->second.begin()) // O(k) has encontrado al jugador 
             {
-                itEq->second.push_front(*j2);
-                itEq->second.erase(j2);
+                itEq->second.push_front(*j2); // O(k)
+                itEq->second.erase(j2); // O(f)
             }
-            else
-            {
-                itEq->second.push_front(jugador);
-            }
+            else itEq->second.push_front(jugador); // O(k)
         }
     }
 
     /// Devuelve el equipo actual por el que está ￿chado este jugador.
     /// En caso de que el jugador no esté dado de alta, lanzará una excepción domain_error con el mensaje “Jugador inexistente”.
-    // Coste:
+    // Coste: O(n) siendo n la cantidad de jugadores
     Equipo equipoActual(const Jugador& jugador) const {
         auto j = jugadores.find(jugador);
         if (j == jugadores.end())
@@ -108,7 +107,7 @@ public:
 
     // Devuelve cuántos jugadores tiene ￿chados actualmente el equipo.
     // En caso de que el equipo no esté dado de alta, lanzará una excepción domain_error con el mensaje “Equipo inexistente”.
-    // Coste:
+    // Coste: O(n) siendo n la cantidad de equipos
     int fichados(const Equipo& equipo) const {
         auto e = equipos.find(equipo);
         if (e == equipos.end())
@@ -122,20 +121,24 @@ public:
     // El tipo lineal estará ordenado por el momento en que fueron fi￿chados, primero el último ￿fichaje.
     // Si el equipo tiene menos de n jugadores, se devolverán todos, ordenados de la misma manera.
     // En caso de que el equipo no esté dado de alta, lanzará una excepción domain_error con el mensaje “Equipo inexistente”.
-    // Coste: 
+    // Coste: O(n + m) siendo n la cantidad de equipos y m los fichajes a mostrar
     list<Jugador> ultimosFichajes(const Equipo& equipo, int n) const {
-        auto e = equipos.find(equipo);
-        if (e == equipos.end())
+        auto e = equipos.find(equipo); // O(n)
+        if (e == equipos.end()) // O(k)
             throw domain_error("Equipo inexistente");
 
-        list<Jugador> res;
 
-        auto m = min(n, (int)e->second.size());
-        auto j = e->second.begin();
+        auto m = n;
+        //auto m = min(n, (int)e->second.size());
+        if (n > e->second.size()) // O(k)
+            m = e->second.size(); // O(k)
+        list<Jugador> res(m);
 
-        for (int i = 0; i < m; i++)
+        auto j = e->second.begin();// O(k)
+
+        for (int i = 0; i < m; i++) // O(m)
         {
-            res.push_back(*j);
+            res.push_back(*j); // O(k)
             ++j;
         }
 
@@ -144,7 +147,7 @@ public:
 
     // Devuelve el número de equipos distintos por los que ha estado fi￿chado el jugador.
     // Si el jugador no está dado de alta en el sistema, devolverá 0.
-    // Coste:
+    // Coste: O(n) siendo n la cantidad de jugadores
     int cuantosEquipos(const Jugador& jugador) const {
         auto j = jugadores.find(jugador);
         if (j == jugadores.end())
