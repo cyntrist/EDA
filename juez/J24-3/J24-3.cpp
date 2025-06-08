@@ -36,7 +36,7 @@ public:
     // El paciente pasa a la sala de espera.
     // Si el paciente ya estaba registrado, lanzará una excepción domain_error con mensaje Paciente repetido.
     // Si la gravedad dada no es un número entre 1 ￿y 3, se lanzará una excepción domain_error con el mensaje Gravedad incorrecta.
-    // coste:
+    // coste: O(n) en caso peor siendo n el tamaño del registro
     void nuevo_paciente(paciente p, gravedad g) {
         auto search = reg.find(p);
         if (search != reg.end())
@@ -58,7 +58,7 @@ public:
 
     // devuelve el entero que representa la gravedad actual de paciente.
     // Si el paciente no está en la sala de espera, se lanzará una excepción domain_error con mensaje Paciente inexistente.
-    // coste:
+    // coste: O(n) en caso peor siendo n el tamaño del registro
     int gravedad_actual(paciente p) const {
         auto search = reg.find(p);
         if (search == reg.end())
@@ -73,7 +73,7 @@ public:
     /// Dentro de la misma gravedad se tiene en cuenta el orden de llegada (el primero que llega es el más prioritario),
     /// o el que provoca la operación mejora de cambio de gravedad, explicada a continuación.
     // Si no hay pacientes se lanzará una excepción domain_error con mensaje No hay pacientes.
-    // coste:
+    // coste: O(n) por erase
     paciente siguiente() {
         if (!graves.empty()) 
         {
@@ -104,7 +104,7 @@ public:
     // Para el orden de atención se coloca como el más prioritario de los que tienen la nueva gravedad.
     // Si el paciente estaba leve, entonces se recupera y abandona las urgencias.
     // Si el paciente no existe, se lanzará una excepción domain_error con mensaje Paciente inexistente.
-    // coste:
+    // coste: O(n) por find, erase
     void mejora(paciente p) {
         auto search = reg.find(p);
         if (search == reg.end())
@@ -159,7 +159,7 @@ public:
     // devuelve un tipo de datos lineal ordenado alfabéticamente (y sin repeticiones)
     // con los pacientes que han pasado alguna vez por el servicio de urgencias
     // y se han recuperado del todo mientras esperaban.
-    // coste:
+    // coste: O(n) siendo n la cantidad de sanos
     list<paciente> recuperados() const {
         list<paciente> res;
 

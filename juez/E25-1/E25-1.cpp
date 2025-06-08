@@ -48,7 +48,7 @@ void resolver(vector<int>& soluc, int k, int n, int m, int l, vector<int>& kilos
 
 	// 1) for de candidatos     -> candidatos
 	// --- 2) guardar el indice del for que se va probando en el vect solucion
-	// --- 3) if esValida       -> ver si lo que acabas de guardar ha sido una eleccion valida
+	// --- 3) if				-> ver si lo que acabas de guardar ha sido una eleccion valida
 	// ------ 4) if esSolucion  -> 
 	// --------- 5) if esMejor  -> 
 	// ------ 6) else noSolucion
@@ -58,13 +58,16 @@ void resolver(vector<int>& soluc, int k, int n, int m, int l, vector<int>& kilos
 	if (k >= m) return;
 	for (int i = 0; i < n; i++) // ciclar voluntarios
 	{
-		// marcar
-		suma += kilosPorVoluntario[k][i]; /// guardar maximo por area 
-
-		soluc[k] = suma;
-
 		if (asignados[i] == -1) // es valida
 		{
+			// marcar
+			suma += kilosPorVoluntario[i][k];
+
+			soluc[k] = suma;
+			int restante = kilosPorArea[k] - soluc[k];
+			if (restante < 0)
+				soluc[k] = kilosPorArea[k];
+
 			// marcar
 			asignados[i] = k;
 			if (soluc[k] >= kilosPorArea[k]) 
@@ -72,8 +75,8 @@ void resolver(vector<int>& soluc, int k, int n, int m, int l, vector<int>& kilos
 
 			if (limpias >= l) // es solucion
 			{
-				if (suma >= maxSuma) // es mejor
-					maxSuma = suma;
+				if (soluc[k] >= maxSuma) // es mejor
+					maxSuma = soluc[k];
 			}
 			else if (k < n - 1)
 			{
@@ -82,12 +85,12 @@ void resolver(vector<int>& soluc, int k, int n, int m, int l, vector<int>& kilos
 			}
 			// desmarcamos
 			if (soluc[k] >= kilosPorArea[k])
-				limpias++;
+				limpias--;
 			asignados[i] = -1;
-		}
 
-		// desmarcamos
-		suma -= kilosPorVoluntario[k][i];
+			// desmarcamos
+			suma -= kilosPorVoluntario[i][k];
+		}
 	}
 }
 

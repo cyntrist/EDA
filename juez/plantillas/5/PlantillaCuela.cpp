@@ -10,7 +10,8 @@ class queue_plus : public queue<T> {
     using Nodo = typename queue<T>::Nodo;
 
 public:
-    void cuela(const T& a, const T& b){
+    void cuela(const T& a, const T& b)
+    {
         // Ojo que para acceder a prim o ult hay que escribir this->prim o this->ult
     }
 };
@@ -53,7 +54,7 @@ int main() {
     // Para la entrada por fichero.
     // Comentar para acepta el reto
 #ifndef DOMJUDGE
-    std::ifstream in("datos.txt");
+    std::ifstream in("input.txt");
     auto cinbuf = std::cin.rdbuf(in.rdbuf()); //save old buf and redirect std::cin to casos.txt
 #endif
 
