@@ -1,19 +1,9 @@
-/*
-Qué has conseguido hacer y qué no:
-
-Tupla solución:
-
-Marcadores:
-
-Ejemplo de aplicación de poda por estimación:
-
-*/
-
 #include <iostream>
 #include <iomanip>
 #include <fstream>
 #include <vector>
 #include <climits>
+#include <ratio>
 using namespace std;
 
 template <class T>
@@ -34,13 +24,15 @@ ostream& operator<<(ostream& out, vector<T> const& v)
 // l			-> n areas minimas a limpiar
 // kilosPorArea	-> kg a limpiar por area
 // --- marcadores
-// suma			-> kg totales
+// sumaTotal	-> kg totales
 // maxSuma		-> kg totales maximizados
 // limpias		-> areas limpiadas hasta el momento
-// asignados	-> vector de areas según voluntario
+
+// TUPLA = soluc(n) // cada i es el area (0 a m-1) que le asignas a ese voluntario
+// [2, 1, 1, 1, 0] -> i=0 asignado a area 2, i=1 asignado a area 1
 void resolver(vector<int>& soluc, int k, int n, int m, int l, vector<int>& kilosPorArea, 
 	vector<vector<int>> const& kilosPorVoluntario, 
-	int suma, vector<int>& asignados, int limpias, int& maxSuma)
+	int sumaTotal, int limpias, int& maxSuma, vector<int>& kilosPorAreaRestantes, vector<int>& kilosDesde)
 {
 	// ---- ESQUEMA DE BACKTRACKING ----
 
@@ -55,41 +47,58 @@ void resolver(vector<int>& soluc, int k, int n, int m, int l, vector<int>& kilos
 	// --------- 7) if poda     ->
 	// ------------ 8) llamada recursiva k+1
 
-	if (k >= m) return;
-	for (int i = 0; i < n; i++) // ciclar voluntarios
+	for (int area = 0; area < m; ++area) // candidatos: areas
 	{
-		if (asignados[i] == -1) // es valida
+		if (soluc[k] == -1) // valida
 		{
-			// marcar
-			suma += kilosPorVoluntario[i][k];
+			soluc[k] = area; // k es el nº de voluntario
 
-			soluc[k] = suma;
-			int restante = kilosPorArea[k] - soluc[k];
-			if (restante < 0)
-				soluc[k] = kilosPorArea[k];
-
-			// marcar
-			asignados[i] = k;
-			if (soluc[k] >= kilosPorArea[k]) 
+			// Marcar
+			int kg = kilosPorAreaRestantes[area];
+			int restante = kilosPorAreaRestantes[area] - kilosPorVoluntario[k][area];
+			if (restante <= 0 )
+			{
+				sumaTotal += kilosPorAreaRestantes[area];
+				kilosPorAreaRestantes[area] = 0;
 				limpias++;
+			}
+			else
+			{
+				sumaTotal += kilosPorVoluntario[k][area];
+				kilosPorAreaRestantes[area] -= kilosPorVoluntario[k][area];
+			}
 
-			if (limpias >= l) // es solucion
+			/// Es solucion
+			if (k == n - 1)
 			{
-				if (soluc[k] >= maxSuma) // es mejor
-					maxSuma = soluc[k];
+				if (limpias >= l) 
+				{
+					if (sumaTotal > maxSuma) // es mejor
+						maxSuma = sumaTotal;
+				}
 			}
-			else if (k < n - 1)
+			else if (sumaTotal + kilosDesde[k] > maxSuma) // PODA
 			{
-				//if () // poda
-				resolver(soluc, k + 1, n, m, l, kilosPorArea, kilosPorVoluntario, suma, asignados, limpias, maxSuma);
+				resolver(soluc, k + 1, n, m, l, 
+					kilosPorArea, kilosPorVoluntario, sumaTotal,
+					limpias, maxSuma, kilosPorAreaRestantes, kilosDesde
+				);
 			}
-			// desmarcamos
-			if (soluc[k] >= kilosPorArea[k])
+
+			// Desmarcar
+			if (restante <= 0)
+			{
 				limpias--;
-			asignados[i] = -1;
+				kilosPorAreaRestantes[area] = kg;
+				sumaTotal -= kilosPorAreaRestantes[area];
+			}
+			else
+			{
+				sumaTotal -= kilosPorVoluntario[k][area];
+				kilosPorAreaRestantes[area] += kilosPorVoluntario[k][area];
+			}
 
-			// desmarcamos
-			suma -= kilosPorVoluntario[i][k];
+			soluc[k] = -1;
 		}
 	}
 }
@@ -102,18 +111,36 @@ void resuelveCaso()
 	// leer los datos de la entrada
 	int n, m, l; // num voluntarios, numero de areas a limpiar >= 1, numero de areas minimas
 	cin >> n >> m >> l;
+
+	/// PRECALCULOS
+	/// PARA PODA
 	vector<int> kilosPorArea(m); // lodo en kilogramos por area
 	for (int i = 0; i < m; ++i)
 		cin >> kilosPorArea[i];
+
 	vector<vector<int>> kilosPorVoluntario(n, vector<int>(m)); // kg que puede limpiar voluntario por area
 	for (int i = 0; i < n; ++i)
 		for (int j = 0; j < m; ++j)
 			cin >> kilosPorVoluntario[i][j];
 
-	vector<int> soluc(m);
-	vector<int> asignados(n, -1);
+	// Precalculos poda
+	vector<int> kilosMax(n, 0);
+	for (int i = 0; i < n; i++)
+		for (int j = 0; j < m; j++)
+			kilosMax[i] = max(kilosMax[i], kilosPorVoluntario[i][j]);
+
+	vector<int> kilosDesde(n, 0);
+	kilosDesde[n - 1] = kilosMax[n - 1];
+	for (int i = n - 2; i >= 0; i--)
+	{
+		kilosDesde[i] += kilosDesde[i + 1];
+		kilosDesde[i] += kilosMax[i];
+	}
+	
+	vector<int> soluc(n, -1);
 	int k = 0, maxSuma = 0;
-	resolver(soluc, k, n, m, l, kilosPorArea, kilosPorVoluntario, 0, asignados, 0, maxSuma);
+	resolver(soluc, k, n, m, l, kilosPorArea, kilosPorVoluntario,
+		0, 0, maxSuma, kilosPorArea, kilosDesde);
 	if (maxSuma <= 0) cout << "IMPOSIBLE" << endl;
 	else cout << maxSuma << endl;
 }
