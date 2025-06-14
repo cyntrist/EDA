@@ -23,27 +23,32 @@ public:
 		if (this->empty()) return;
 
 		Nodo* actA = this->prim;
-		while (actA->elem != a && actA != this->ult) // buscar A
+		while (actA != this->ult && actA->elem != a) // buscar A
 			actA = actA->sig;
-		if (actA->elem != a) return; // si has encontrado A
+		if (actA == this->ult || actA->elem != a)
+			return; // si has encontrado A
 
-		Nodo* actB = actA;
-		while (actB->elem != b && actB != this->ult) // buscar B -> buscar a partir de a
-			actB = actB->sig;
+		Nodo* actB = actA->sig;
 		bool ultimo = false;
+		while (actB != this->ult && actB->elem != b) // buscar B -> buscar a partir de a
+			actB = actB->sig;
 		if (actB->elem != b) return; // si has encontrado B
 		if (actB == this->ult)
 			ultimo = true;
 
-		Nodo* sigB = actA->sig; // siguiente a a 
-		Nodo* sigAntB = actB->sig; // siguiente a b
+
+		Nodo* sigB = actA->sig; // siguiente a a
+		Nodo* sigAntB = nullptr; // siguiente a b
+		if (!ultimo)
+			sigAntB = actB->sig;
 		Nodo* antB = actA->sig; // encontrar anterior a b
-		while (antB->sig != actB && antB != this->ult)
+		while (antB != this->ult && antB->sig != actB)
 			antB = antB->sig;
 
 		actA->sig = actB; // el siguiente de a es b
-		actB->sig = sigB; // el siguiente a b es el antiguo siguiente de a
-		antB->sig = sigAntB; // y el siguiente al antiguo anterior de b es el siguiente a b
+		actB->sig = sigB; // el siguiente a b es el antiguo siguiente de aç
+		if (!ultimo)
+			antB->sig = sigAntB; // y el siguiente al antiguo anterior de b es el siguiente a b
 
 		if (ultimo)
 			this->ult = antB;
