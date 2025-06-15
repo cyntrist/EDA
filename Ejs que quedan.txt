@@ -1,25 +1,13 @@
-Ejs que quedan:
-
-ENERO 2022:
-- Ej2 => árboles (singular) (:-D)
-- Ej3 => aplicaciones de TADs (películas) (:-|)
-
-ENERO 2023:
-- Ej2 => árboles (dragón) (:-D)
-- Ej3 => aplicaciones de TADs (concursos) (:-|)
-
-ENERO 2025: 
-- Ej3 (Revisitar) => aplicaciones de TADs (furbo) (:-D)
-
 FEBRERO 2021:
-- Ej1 (Revisitar) => TAD interno cola (cuela) (:-D)
-- Ej2 => árboles (simétrico) (:-D)
-- Ej3 => backtracking (artistas) (:-D)
+JULIO 2021:
+- Ej2 => divide et impera
 
 JUNIO 2022: 
-- Ej1 => backtracking (colegio) (:-|)
+- Ej2 => divide et impera
+
+JUNIO 2023:
+- Ej2 => divide et impera
 - Ej3 => aplicaciones de TADs (tienda) (:-D)
 
-JUNIO 2024: LIMPIO
 
-ENERO 2024: LIMPIO
+
