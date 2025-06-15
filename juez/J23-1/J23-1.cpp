@@ -64,15 +64,14 @@ void resuelveCaso()
     // llamada a metodo
     q.repetir(multiplicidades, n);
 
+    int j = q.size();
+    for (int i = 0; i < j; i++)
+    {
+        std::cout << q.front() << ' ';
+        q.pop();
+    }
 
-    q;
-    //for (int i = 0; i < n; i++)
-    //{
-    //    std::cout << q.front() << ' ';
-    //    q.pop();
-    //}
-
-    //std::cout << std::endl;
+    std::cout << std::endl;
 }
 
 int main() {
